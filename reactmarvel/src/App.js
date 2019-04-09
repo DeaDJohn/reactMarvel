@@ -3,6 +3,10 @@ import './App.scss';
 import Carousel from 'react-bootstrap/Carousel';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button'
 
 class App extends Component {
 	render() {
@@ -48,14 +52,51 @@ class App extends Component {
 						</Carousel.Caption>
 					</Carousel.Item>
 					</Carousel>
-					<Jumbotron fluid>
+				<Jumbotron fluid>
 						<Container>
 							<h1>Aprendiendo React</h1>
 							<p>
 								Pues nada que estoy aprendiendo a desarrollar en ReactJs y se me ha ocurrido hacerlo con la tematica marvel
 							</p>
 						</Container>
-					</Jumbotron>;
+					</Jumbotron>
+					<Container>
+						<Row className="justify-content-between">
+							<Card style={{ width: '30%' }}>
+								<Card.Img variant="top" src="https://as00.epimg.net/showroom/imagenes/2018/04/25/portada/1524648118_060761_1524649708_noticia_normal.jpg" />
+								<Card.Body>
+									<Card.Title>Card Title</Card.Title>
+									<Card.Text>
+										Some quick example text to build on the card title and make up the bulk of
+										the card's content.
+									</Card.Text>
+									<Button variant="primary">Go somewhere</Button>
+								</Card.Body>
+							</Card>
+							<Card style={{ width: '30%' }}>
+								<Card.Img variant="top" src="https://as00.epimg.net/showroom/imagenes/2018/04/25/portada/1524648118_060761_1524649708_noticia_normal.jpg" />
+								<Card.Body>
+									<Card.Title>Card Title</Card.Title>
+									<Card.Text>
+										Some quick example text to build on the card title and make up the bulk of
+										the card's content.
+									</Card.Text>
+									<Button variant="primary">Go somewhere</Button>
+								</Card.Body>
+							</Card>
+							<Card style={{ width: '30%' }}>
+								<Card.Img variant="top" src="https://as00.epimg.net/showroom/imagenes/2018/04/25/portada/1524648118_060761_1524649708_noticia_normal.jpg" />
+								<Card.Body>
+									<Card.Title>Card Title</Card.Title>
+									<Card.Text>
+										Some quick example text to build on the card title and make up the bulk of
+										the card's content.
+									</Card.Text>
+									<Button variant="primary">Go somewhere</Button>
+								</Card.Body>
+							</Card>
+						</Row>
+					</Container>
 			</div>
 		);
 	}
