@@ -8,7 +8,23 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button'
 
+import { getCharacterInfo, getCharacters } from "./service/services";
+
 class App extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			spiderman: null,
+		};
+	}
+	componentWillMount(){
+		var spiderman = getCharacterInfo(1009610).then( response => response.data.results);
+		this.setState({
+			spiderman: spiderman
+		});
+		console.log(this.state.spiderman);
+	}
 	render() {
 		return (
 			<div className="App">
