@@ -3,28 +3,15 @@ import './App.scss';
 import Carousel from 'react-bootstrap/Carousel';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
+
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button'
+import  CardMarvel  from "./components/CardMarvel";
 
 import { getCharacterInfo, getCharacters } from "./service/services";
 
 class App extends Component {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			spiderman: null,
-		};
-	}
-	componentWillMount(){
-		var spiderman = getCharacterInfo(1009610).then( response => response.data.results);
-		this.setState({
-			spiderman: spiderman
-		});
-		console.log(this.state.spiderman);
-	}
 	render() {
 		return (
 			<div className="App">
@@ -78,39 +65,9 @@ class App extends Component {
 					</Jumbotron>
 					<Container>
 						<Row className="justify-content-between">
-							<Card style={{ width: '30%' }}>
-								<Card.Img variant="top" src="https://as00.epimg.net/showroom/imagenes/2018/04/25/portada/1524648118_060761_1524649708_noticia_normal.jpg" />
-								<Card.Body>
-									<Card.Title>Card Title</Card.Title>
-									<Card.Text>
-										Some quick example text to build on the card title and make up the bulk of
-										the card's content.
-									</Card.Text>
-									<Button variant="primary">Go somewhere</Button>
-								</Card.Body>
-							</Card>
-							<Card style={{ width: '30%' }}>
-								<Card.Img variant="top" src="https://as00.epimg.net/showroom/imagenes/2018/04/25/portada/1524648118_060761_1524649708_noticia_normal.jpg" />
-								<Card.Body>
-									<Card.Title>Card Title</Card.Title>
-									<Card.Text>
-										Some quick example text to build on the card title and make up the bulk of
-										the card's content.
-									</Card.Text>
-									<Button variant="primary">Go somewhere</Button>
-								</Card.Body>
-							</Card>
-							<Card style={{ width: '30%' }}>
-								<Card.Img variant="top" src="https://as00.epimg.net/showroom/imagenes/2018/04/25/portada/1524648118_060761_1524649708_noticia_normal.jpg" />
-								<Card.Body>
-									<Card.Title>Card Title</Card.Title>
-									<Card.Text>
-										Some quick example text to build on the card title and make up the bulk of
-										the card's content.
-									</Card.Text>
-									<Button variant="primary">Go somewhere</Button>
-								</Card.Body>
-							</Card>
+							<CardMarvel heroe="1009610" ></CardMarvel>
+							<CardMarvel heroe="1009220" ></CardMarvel>
+							<CardMarvel heroe="1009368" ></CardMarvel>
 						</Row>
 					</Container>
 			</div>
