@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { getCharacterInfo, getCharacters } from "../service/services";
+import { getCharacterInfo, getCharacters } from "../../service/services";
+import Spinner from 'react-bootstrap/Spinner';
+import './card.scss';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
  class CardMarvel extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             heroe: [],
-            heroeImg: 'https://pbs.twimg.com/profile_images/966379738431459328/d4-iXuRl.jpg'
+            heroeImg: 'https://pbs.twimg.com/profile_images/966379738431459328/d4-iXuRl.jpg',
+            loading: true
         };
     }
     componentWillMount(){
@@ -19,7 +23,8 @@ import { getCharacterInfo, getCharacters } from "../service/services";
 			// console.log(heroe);
             this.setState({
                 heroe: heroe,
-                heroeImg: image
+                heroeImg: image,
+                loading: false
             });
             console.log(image);
         });
@@ -27,14 +32,22 @@ import { getCharacterInfo, getCharacters } from "../service/services";
       render(){
           return (
               
-                <Card style={{ width: '30%' }} key={this.state.heroe.id}>
+                <Card style={{ width: '30%' }} key={this.state.heroe.id} className="marvelCard">
                     <Card.Img variant="top" alt={this.state.heroe.name} src={this.state.heroeImg} />
                     <Card.Body>
-                        <Card.Title>{this.state.heroe.name}</Card.Title>
+                        <Card.Title><h3>{this.state.heroe.name}</h3></Card.Title>
                         <Card.Text>
-                            {this.state.heroe.description}
+                            
+                        {this.state.loading ? (
+                            <Spinner animation="grow" />
+                            ) : (
+                                this.state.heroe.description
+                        )}
                         </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
+                            <Router>
+
+                                <Link to={`heroe/${this.state.heroe.id}`}>Go somewhere</Link>
+                            </Router>
                     </Card.Body>
                 </Card>
           );
