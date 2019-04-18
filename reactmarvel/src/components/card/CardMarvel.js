@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
-import Button from 'react-bootstrap/Button';
+import React from 'react';
 import Card from 'react-bootstrap/Card';
-import { getCharacterInfo, getCharacters } from "../../service/services";
+import { getCharacterInfo } from "../../service/services";
 import Spinner from 'react-bootstrap/Spinner';
 import './card.scss';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
- class CardMarvel extends React.Component {
+class CardMarvel extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,12 +14,12 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
             loading: true
         };
     }
-    componentWillMount(){
+    componentWillMount() {
         console.log(this.props);
-		getCharacterInfo(this.props.heroe).then( response => {
+        getCharacterInfo(this.props.heroe).then(response => {
             const heroe = response.data.results[0];
-            const image = heroe.thumbnail.path +'.'+heroe.thumbnail.extension;
-			// console.log(heroe);
+            const image = heroe.thumbnail.path + '.' + heroe.thumbnail.extension;
+            // console.log(heroe);
             this.setState({
                 heroe: heroe,
                 heroeImg: image,
@@ -29,29 +28,43 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
             console.log(image);
         });
     }
-      render(){
-          return (
-              
-                <Card style={{ width: '30%' }} key={this.state.heroe.id} className="marvelCard">
-                    <Card.Img variant="top" alt={this.state.heroe.name} src={this.state.heroeImg} />
-                    <Card.Body>
-                        <Card.Title><h3>{this.state.heroe.name}</h3></Card.Title>
-                        <Card.Text>
-                            
-                        {this.state.loading ? (
-                            <Spinner animation="grow" />
-                            ) : (
-                                this.state.heroe.description
-                        )}
-                        </Card.Text>
-                            <Router>
+    render() {
+        return (
 
-                                <Link to={`heroe/${this.state.heroe.id}`}>Go somewhere</Link>
-                            </Router>
-                    </Card.Body>
-                </Card>
-          );
-      }
+            <
+            Card style = {
+                { width: '30%' }
+            }
+            key = { this.state.heroe.id }
+            className = "marvelCard" >
+            <
+            Card.Img variant = "top"
+            alt = { this.state.heroe.name }
+            src = { this.state.heroeImg }
+            /> <
+            Card.Body >
+            <
+            Card.Title > < h3 > { this.state.heroe.name } < /h3></Card.Title >
+            <
+            Card.Text >
+
+            {
+                this.state.loading ? ( <
+                    Spinner animation = "grow" / >
+                ) : (
+                    this.state.heroe.description
+                )
+            } <
+            /Card.Text> <
+            Router >
+
+            <
+            Link to = { `heroe/${this.state.heroe.id}` } > Go somewhere < /Link> < /
+            Router > <
+            /Card.Body> < /
+            Card >
+        );
+    }
 }
 
 

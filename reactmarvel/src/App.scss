@@ -1,55 +1,79 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
-body{
-	font-family: 'Roboto', sans-serif;
-}
-.App {
-	text-align: center;
-	font-family: 'Roboto', sans-serif;
+.marvelApp {
+    a {
+        transition: all .5s ease-out;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    nav {
+        background: #3268bd;
+        top: 0;
+        width: 100%;
+        z-index: 9;
+        font-family: 'Roboto', sans-serif;
+        li {
+            padding: 1.3em;
+        }
+        a {
+            font-size: 18px;
+            color: #fff;
+            font-weight: bold;
+            &:hover {
+                opacity: 0.6;
+            }
+        }
+    }
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+    .App {
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+    }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+        height: 40vmin;
+        pointer-events: none;
+    }
+    .App-header {
+        background-color: #282c34;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: calc(10px + 2vmin);
+        color: white;
+    }
+    .App-link {
+        color: #61dafb;
+    }
+    .carousel-caption {
+        background-color: rgba(#000, 0.5);
+    }
+    .carousel-item {
+        height: calc(100vh - 83px);
+        min-height: 500px;
+        // max-height: 650px;
+        overflow: hidden;
+        img {
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+    .jumbotron.jumbotron {
+        background-color: #3268bd;
+        color: white;
+    }
 }
 
-.App-logo {
-	animation: App-logo-spin infinite 20s linear;
-	height: 40vmin;
-	pointer-events: none;
-}
-
-.App-header {
-	background-color: #282c34;
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	font-size: calc(10px + 2vmin);
-	color: white;
-}
-
-.App-link {
-	color: #61dafb;
-}
-.carousel-caption{
-	background-color: rgba(#000, 0.5);
-}
-.carousel-item{
-	height: 75vh;
-	min-height: 500px;
-	max-height: 650px;
-	overflow: hidden;
-	img{
-		height: 100%;
-		object-fit: cover;
-		object-position: center;
-	}
-}
-.jumbotron.jumbotron{
-	background-color: #3268bd;
-	color: white;
-}
 @keyframes App-logo-spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
