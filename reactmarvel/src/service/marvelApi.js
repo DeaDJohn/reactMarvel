@@ -8,15 +8,18 @@ const config = {
     BASE_URL: `${window.location.protocol || 'http'}//gateway.marvel.com:80`
 };
 
-export const getCharacters = () => {
+export const getCharacters = (currentPage) => {
     const URI = '/v1/public/characters';
     const url = `${config.BASE_URL}${URI}`;
     const timeStamp = moment().unix();
-
+    const offset = (currentPage > 1) ? 21 * currentPage : 0;
+    console.log(offset);
     const queryParams = {
         ts: timeStamp,
         apikey: config.API_PUBLIC,
-        hash: CryptoJS.MD5(timeStamp + config.API_PRIVATE + config.API_PUBLIC).toString(CryptoJS.enc.Hex)
+        hash: CryptoJS.MD5(timeStamp + config.API_PRIVATE + config.API_PUBLIC).toString(CryptoJS.enc.Hex),
+        limit: 21,
+        offset: offset
     };
 
     return axios

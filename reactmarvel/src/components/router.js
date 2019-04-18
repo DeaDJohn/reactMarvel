@@ -2,7 +2,7 @@ import React from "react";
 import '../App.scss';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import  Home  from "../views/home/home";
-
+import Listado from "../views/listado/listado"
 // Each logical "route" has two components, one for
 // the sidebar and one for the main area. We want to
 // render both of them in different places when the
@@ -15,14 +15,14 @@ const routes = [
     main: Home
   },
   {
-    path: "/heroes",
-    sidebar: () => <div>bubblegum!</div>,
-    main: () => <h2>Bubblegum</h2>
+    path: "/heroes/:page",
+    sidebar: () => <div>Listado</div>,
+    main: Listado
   },
   {
-    path: "/shoelaces",
-    sidebar: () => <div>shoelaces!</div>,
-    main: () => <h2>Shoelaces</h2>
+    path: "/heroe/:id",
+    sidebar: () => <div>Heroe!</div>,
+    main: () => <h2>Heroe</h2>
   }
 ];
 
@@ -30,20 +30,20 @@ function menuHeroes () {
   return (
     <Router>
         
-      <div class="marvelApp">
+      <div className="marvelApp">
         <div>
-            <nav class="navbar navbar-expand-lg">
+            <nav className="navbar navbar-expand-lg">
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
+                <div className="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul className="navbar-nav">
+                        <li className="nav-item active">
                             <Link to="/">Home</Link>
                         </li>
-                        <li class="nav-item">
-                            <Link to="/heroes">Heroes</Link>
+                        <li className="nav-item">
+                            <Link to="/heroes/1">Heroes</Link>
                         </li>
                     </ul>
                 </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
+import {  } from "./components/router";
 import Carousel from 'react-bootstrap/Carousel';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
