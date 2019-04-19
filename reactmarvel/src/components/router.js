@@ -3,7 +3,9 @@ import '../App.scss';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import  Home  from "../views/home/home";
 import Listado from "../views/listado/listado";
+import ListadoComics from "../views/listadoComics/listadoComics"
 import Single from "../views/single/single"
+import Footer from "../components/footer/footer"
 // Each logical "route" has two components, one for
 // the sidebar and one for the main area. We want to
 // render both of them in different places when the
@@ -24,6 +26,11 @@ const routes = [
     path: "/heroe/:id",
     sidebar: () => <div>Heroe!</div>,
     main: Single
+  },
+  {
+    path: "/comics/:id",
+    sidebar: () => <div>Comics!</div>,
+    main: ListadoComics
   }
 ];
 
@@ -46,6 +53,9 @@ function menuHeroes () {
                         <li className="nav-item">
                             <Link to="/heroes/1">Heroes</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link to="/comics/1">Comics</Link>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -61,6 +71,7 @@ function menuHeroes () {
                 component={route.main}
             />
           ))}
+      <Footer></Footer>
       </div>
     </Router>
   );

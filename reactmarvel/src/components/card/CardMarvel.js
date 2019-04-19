@@ -16,7 +16,7 @@ import Col from 'react-bootstrap/Col';
         };
     }
     componentWillMount(){
-        console.log(this.props);
+        // console.log(this.props);
 		getCharacterInfo(this.props.heroe).then( response => {
             const heroe = response.data.results[0];
             const image = heroe.thumbnail.path +'/standard_fantastic.'+heroe.thumbnail.extension;
@@ -31,7 +31,7 @@ import Col from 'react-bootstrap/Col';
     }
       render(){
           return (
-            <Col xs={6} md={4} className="marvelCard" key={this.state.heroe.id}>
+            <Col xs={6} md={4} className="marvelCard">
                 <Card >
                     <Card.Img variant="top" alt={this.state.heroe.name} src={this.state.heroeImg} />
                     <Card.Body>
