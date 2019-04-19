@@ -2,7 +2,8 @@ import React from "react";
 import '../App.scss';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import  Home  from "../views/home/home";
-import Listado from "../views/listado/listado"
+import Listado from "../views/listado/listado";
+import Single from "../views/single/single"
 // Each logical "route" has two components, one for
 // the sidebar and one for the main area. We want to
 // render both of them in different places when the
@@ -22,7 +23,7 @@ const routes = [
   {
     path: "/heroe/:id",
     sidebar: () => <div>Heroe!</div>,
-    main: () => <h2>Heroe</h2>
+    main: Single
   }
 ];
 
@@ -40,7 +41,7 @@ function menuHeroes () {
                 <div className="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul className="navbar-nav">
                         <li className="nav-item active">
-                            <Link to="/">Home</Link>
+                            <Link to="/"><img src="https://upload.wikimedia.org/wikipedia/commons/0/04/MarvelLogo.svg" alt="Marvel App React"/></Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/heroes/1">Heroes</Link>
