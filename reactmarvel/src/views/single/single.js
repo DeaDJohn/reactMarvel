@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Header from '../../components/header';
 
 import { getCharacterInfo } from "../../service/services";
 
@@ -45,6 +46,7 @@ class Single extends React.Component {
     render(){
         return(
             <div className="single">
+                <Header titulo={this.state.heroe.name} />
                 <Container key={this.state.heroe.id}>
                     <Row>
                         <Col xs={12} md={8} className="single-desc">

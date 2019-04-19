@@ -7,9 +7,10 @@ import Col from 'react-bootstrap/Col';
 import { getComics } from "../../service/services";
 import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
+import Header from '../../components/header';
 
 import Card from 'react-bootstrap/Card';
-import Spinner from 'react-bootstrap/Spinner';
+import { PacmanLoader } from 'react-spinners';
 
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
@@ -54,25 +55,29 @@ class ListadoComics extends React.Component {
     render(){
         return(
             <div className="listado text-center">
+                <Header titulo="Comics" />
                 <Container>
                     <Row>
-                        <Col><h1>Comics</h1></Col>
-                    </Row>
-                </Container>
-                <Container>
-                    <Row>
-                        {
+                        {this.state.loading ? (
+                                <div className="loader">
+                                    <PacmanLoader
+                                        sizeUnit={"px"}
+                                        size={75}
+                                        color={'#123abc'}
+                                        loading={this.state.loading}
+                                    />
+                                </div>
+                                ) : (
                             this.state.comics.map( (comic) => {
                                 console.log(comic.thumbnail.path);
                                 return (
                                     <Col xs={12} sm={6} md={4} className="marvelCard">
                                         <Card >
-                                            <Card.Img variant="top" alt={comic.title} src={comic.thumbnail.path+'.jpg'} />
+                                            <Card.Img variant="top" alt={comic.title} src={comic.thumbnail.path+'/standard_fantastic.jpg'} />
                                             <Card.Body>
                                                 <Card.Title><h3>{comic.title}</h3></Card.Title>
-                                                <Card.Text>
-                                                    
-                                                { comic.description}
+                                                <Card.Text dangerouslySetInnerHTML={{ __html: comic.description }}>
+
                                                 </Card.Text>
                                                     <Router>
                                                         <Link to={`comic/${comic.id}`}>Saber más</Link>
@@ -83,7 +88,7 @@ class ListadoComics extends React.Component {
                                     
                                 );
                             })
-                        }
+                                )}
                     </Row>
                     <Row>
                         <Col>

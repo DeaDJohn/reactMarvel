@@ -9,6 +9,10 @@ import { getCharacters } from "../../service/services";
 import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
 
+import Header from '../../components/header';
+
+import { PacmanLoader } from 'react-spinners';
+
 class Listado extends React.Component {
     
     constructor(props) {
@@ -51,21 +55,26 @@ class Listado extends React.Component {
     render(){
         return(
             <div className="listado text-center">
+                <Header titulo="Heroes" />
                 <Container>
                     <Row>
-                        <Col><h1>Heroes</h1></Col>
-                    </Row>
-                </Container>
-                <Container>
-                    <Row>
-                        {
+                    {this.state.loading ? (
+                        <div className="loader">
+                            <PacmanLoader
+                                sizeUnit={"px"}
+                                size={75}
+                                color={'#123abc'}
+                                loading={this.state.loading}
+                            />
+                        </div>
+                        ) : (
                             this.state.heroes.map( (heroe) => {
                                 return (
                                     <CardMarvel key={heroe.id} heroe={heroe.id} ></CardMarvel>
                                 
                                 );
                             })
-                        }
+                    )}
                     </Row>
                     <Row>
                         <Col>
