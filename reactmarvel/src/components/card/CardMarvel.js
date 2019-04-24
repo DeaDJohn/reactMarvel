@@ -20,13 +20,12 @@ import Col from 'react-bootstrap/Col';
 		getCharacterInfo(this.props.heroe).then( response => {
             const heroe = response.data.results[0];
             const image = heroe.thumbnail.path +'/standard_fantastic.'+heroe.thumbnail.extension;
-			// console.log(heroe);
+			
             this.setState({
                 heroe: heroe,
                 heroeImg: image,
                 loading: false
             });
-            // console.log(image);
         });
     }
       render(){
@@ -36,16 +35,16 @@ import Col from 'react-bootstrap/Col';
                     <Card.Img variant="top" alt={this.state.heroe.name} src={this.state.heroeImg} />
                     <Card.Body>
                         <Card.Title><h3>{this.state.heroe.name}</h3></Card.Title>
-                        <Card.Text>
                             
                         {this.state.loading ? (
                             <Spinner animation="grow" />
                             ) : (
-                                this.state.heroe.description
+                                <Card.Text>
+                                    {this.state.heroe.description}
+                                </Card.Text>
                         )}
-                        </Card.Text>
                             <Router>
-                                <Link to={`heroe/${this.state.heroe.id}`}>Saber más</Link>
+                                <Link to={`/heroe/${this.state.heroe.id}`}>Saber más</Link>
                             </Router>
                     </Card.Body>
                 </Card>

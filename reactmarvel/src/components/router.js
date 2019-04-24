@@ -1,11 +1,12 @@
 import React from "react";
 import '../App.scss';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link,Switch } from "react-router-dom";
 import  Home  from "../views/home/home";
 import Listado from "../views/listado/listado";
-import ListadoComics from "../views/listadoComics/listadoComics"
-import Single from "../views/single/single"
-import Footer from "../components/footer/footer"
+import ListadoComics from "../views/listadoComics/listadoComics";
+import Single from "../views/single/single";
+import SingleComic from "../views/single/singleComic";
+import Footer from "../components/footer/footer";
 // Each logical "route" has two components, one for
 // the sidebar and one for the main area. We want to
 // render both of them in different places when the
@@ -14,23 +15,27 @@ const routes = [
   {
     path: "/",
     exact: true,
-    sidebar: () => <div>home!</div>,
     main: Home
   },
   {
     path: "/heroes/:page",
-    sidebar: () => <div>Listado</div>,
-    main: Listado
+	main: Listado,
+	exact: true
   },
   {
     path: "/heroe/:id",
-    sidebar: () => <div>Heroe!</div>,
-    main: Single
+	main: Single,
+	exact: true
   },
   {
-    path: "/comics/:id",
-    sidebar: () => <div>Comics!</div>,
-    main: ListadoComics
+    path: "/comics/:page",
+	main: ListadoComics,
+	// exact: true
+  },
+  {
+    path: "/comic/:id",
+	main: SingleComic,
+	exact: true
   }
 ];
 
@@ -41,7 +46,6 @@ function menuHeroes () {
       <div className="marvelApp">
         <div>
             <nav className="navbar navbar-expand-lg">
-
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -60,7 +64,7 @@ function menuHeroes () {
                 </div>
             </nav>
         </div>
-
+		<Switch>
           {routes.map((route, index) => (
             // Render more <Route>s with the same paths as
             // above, but different components this time.
@@ -70,8 +74,9 @@ function menuHeroes () {
                 exact={route.exact}
                 component={route.main}
             />
-          ))}
-      <Footer></Footer>
+		  ))}
+		  </Switch>
+      <Footer />
       </div>
     </Router>
   );

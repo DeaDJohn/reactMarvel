@@ -67,3 +67,23 @@ export const getComics = (currentPage) => {
         .then((response) => Promise.resolve(response.data))
         .catch((error) => Promise.reject(error));
 };
+
+export const getComicInfo = (comicId = null) => {
+    if (comicId) {
+        const URI = '/v1/public/comics';
+        const url = `${config.BASE_URL}${URI}/${comicId}`;
+        const timeStamp = moment().unix();
+
+        const queryParams = {
+            ts: timeStamp,
+            apikey: config.API_PUBLIC,
+            hash: CryptoJS.MD5(timeStamp + config.API_PRIVATE + config.API_PUBLIC).toString(CryptoJS.enc.Hex)
+        };
+
+        return axios
+            .get(url, { params: queryParams })
+            .then((response) => Promise.resolve(response.data))
+            .catch((error) => Promise.reject(error));
+    }
+    return Promise.reject({ message: 'characterId is not defined' });
+};

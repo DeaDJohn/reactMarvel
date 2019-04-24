@@ -32,7 +32,7 @@ class Listado extends React.Component {
             this.setState({
                 heroes: heroes,
                 loading: false,
-                paginaActual: this.props.match.params.page,
+                paginaActual: parseInt(this.props.match.params.page),
                 totalHeroe
             });
         });
@@ -41,7 +41,7 @@ class Listado extends React.Component {
     onChange = (page) => {
         console.log(page);
         this.setState({
-            paginaActual: page,
+            paginaActual: parseInt(page),
         });
         getCharacters(this.state.paginaActual).then(response => {
             const heroes = response.data.results;

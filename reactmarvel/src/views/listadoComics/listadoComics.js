@@ -8,6 +8,7 @@ import { getComics } from "../../service/services";
 import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
 import Header from '../../components/header';
+import SingleComic from "../single/singleComic";
 
 import Card from 'react-bootstrap/Card';
 import { PacmanLoader } from 'react-spinners';
@@ -80,7 +81,7 @@ class ListadoComics extends React.Component {
 
                                                 </Card.Text>
                                                     <Router>
-                                                        <Link to={`comic/${comic.id}`}>Saber más</Link>
+                                                        <Link to={`/comic/${comic.id}`} component={SingleComic}>Saber más</Link>
                                                     </Router>
                                             </Card.Body>
                                         </Card>

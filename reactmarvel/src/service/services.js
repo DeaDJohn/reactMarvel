@@ -1,7 +1,8 @@
-import { getCharacters, getCharacterInfo, getComics } from './marvelApi';
+import { getCharacters, getCharacterInfo, getComics, getComicInfo } from './marvelApi';
 
 export {
     getCharacters,
     getCharacterInfo,
-    getComics
+    getComics,
+    getComicInfo
 };
