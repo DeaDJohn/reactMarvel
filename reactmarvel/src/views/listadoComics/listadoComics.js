@@ -80,9 +80,9 @@ class ListadoComics extends React.Component {
                                                 <Card.Text dangerouslySetInnerHTML={{ __html: comic.description }}>
 
                                                 </Card.Text>
-                                                    <Router>
+                                                    
                                                         <Link to={`/comic/${comic.id}`} component={SingleComic}>Saber más</Link>
-                                                    </Router>
+                                                    
                                             </Card.Body>
                                         </Card>
                                     </Col>

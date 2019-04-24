@@ -43,9 +43,9 @@ import Col from 'react-bootstrap/Col';
                                     {this.state.heroe.description}
                                 </Card.Text>
                         )}
-                            <Router>
+                            
                                 <Link to={`/heroe/${this.state.heroe.id}`}>Saber más</Link>
-                            </Router>
+                            
                     </Card.Body>
                 </Card>
             </Col>
