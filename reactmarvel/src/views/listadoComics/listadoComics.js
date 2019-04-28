@@ -12,11 +12,11 @@ import SingleComic from "../single/singleComic";
 
 import Card from 'react-bootstrap/Card';
 import { PacmanLoader } from 'react-spinners';
-
+// eslint-disable-next-line
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
 class ListadoComics extends React.Component {
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -51,53 +51,77 @@ class ListadoComics extends React.Component {
                 loading: false
             });
         });
-      }
+    }
 
-    render(){
-        return(
-            <div className="listado text-center">
-                <Header titulo="Comics" />
-                <Container>
-                    <Row>
-                        {this.state.loading ? (
-                                <div className="loader">
-                                    <PacmanLoader
-                                        sizeUnit={"px"}
-                                        size={75}
-                                        color={'#123abc'}
-                                        loading={this.state.loading}
-                                    />
-                                </div>
-                                ) : (
-                            this.state.comics.map( (comic) => {
-                                console.log(comic.thumbnail.path);
-                                return (
-                                    <Col xs={12} sm={6} md={4} className="marvelCard">
-                                        <Card >
-                                            <Card.Img variant="top" alt={comic.title} src={comic.thumbnail.path+'/standard_fantastic.jpg'} />
-                                            <Card.Body>
-                                                <Card.Title><h3>{comic.title}</h3></Card.Title>
-                                                <Card.Text dangerouslySetInnerHTML={{ __html: comic.description }}>
+    render() {
+        return ( <
+            div className = "listado text-center" >
+            <
+            Header titulo = "Comics" / >
+            <
+            Container >
+            <
+            Row > {
+                this.state.loading ? ( <
+                    div className = "loader" >
+                    <
+                    PacmanLoader sizeUnit = { "px" }
+                    size = { 75 }
+                    color = { '#123abc' }
+                    loading = { this.state.loading }
+                    /> <
+                    /div>
+                ) : (
+                    this.state.comics.map((comic) => {
+                        console.log(comic.thumbnail.path);
+                        return ( <
+                            Col xs = { 12 }
+                            sm = { 6 }
+                            md = { 4 }
+                            className = "marvelCard" >
+                            <
+                            Card >
+                            <
+                            Card.Img variant = "top"
+                            alt = { comic.title }
+                            src = { comic.thumbnail.path + '/standard_fantastic.jpg' }
+                            /> <
+                            Card.Body >
+                            <
+                            Card.Title > < h3 > { comic.title } < /h3></Card.Title >
+                            <
+                            Card.Text dangerouslySetInnerHTML = {
+                                { __html: comic.description } } >
 
-                                                </Card.Text>
-                                                    
-                                                        <Link to={`/comic/${comic.id}`} component={SingleComic}>Saber más</Link>
-                                                    
-                                            </Card.Body>
-                                        </Card>
-                                    </Col>
-                                    
-                                );
-                            })
-                                )}
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Pagination onChange={this.onChange} current={this.state.paginaActual} total={this.state.totalcomic / 21} />
-                        </Col>
-                    </Row>
-                </Container>
-            </div>     
+                            <
+                            /Card.Text>
+
+                            <
+                            Link to = { `/comic/${comic.id}` }
+                            component = { SingleComic } > Saber más < /Link>
+
+                            <
+                            /Card.Body> <
+                            /Card> <
+                            /Col>
+
+                        );
+                    })
+                )
+            } <
+            /Row> <
+            Row >
+            <
+            Col >
+            <
+            Pagination onChange = { this.onChange }
+            current = { this.state.paginaActual }
+            total = { this.state.totalcomic / 21 }
+            /> <
+            /Col> <
+            /Row> <
+            /Container> <
+            /div>     
         );
     }
 }

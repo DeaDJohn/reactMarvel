@@ -8,8 +8,10 @@ import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Header from '../../components/header';
+// eslint-disable-next-line
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
-import { getCharacterInfo } from "../../service/services";
+import { getCharacterInfo, getComicsByCharacters, getSeriesByCharacters, getStoriesByCharacters, getEventsByCharacters } from "../../service/services";
 
 class Single extends React.Component {
     
@@ -23,6 +25,10 @@ class Single extends React.Component {
             stories: [],
             series: [],
             events: [],
+            comicList: [],
+            seriesList: [],
+            storiesList: [],
+            eventsList:[]
         };
     }
     componentWillMount() {
@@ -38,8 +44,33 @@ class Single extends React.Component {
                 stories: heroe.stories,
                 series: heroe.series,
                 events: heroe.events,
-                loading: false
+                loading: false,
             });
+            getComicsByCharacters(this.state.idHeroe).then(response => {
+                // console.log(response.data.results);
+                this.setState({
+                    comicList: response.data.results,
+                });
+            });
+            getStoriesByCharacters(this.state.idHeroe).then(response => {
+                // console.log(response.data.results);
+                this.setState({
+                    storiesList: response.data.results,
+                });
+            });
+            getSeriesByCharacters(this.state.idHeroe).then(response => {
+                // console.log(response.data.results);
+                this.setState({
+                    seriesList: response.data.results,
+                });
+            });
+            getEventsByCharacters(this.state.idHeroe).then(response => {
+                // console.log(response.data.results);
+                this.setState({
+                    eventsList: response.data.results,
+                });
+            });
+            
         });
     }
 
@@ -50,7 +81,7 @@ class Single extends React.Component {
                 <Container key={this.state.heroe.id}>
                     <Row>
                         <Col xs={12} md={8} className="single-desc">
-                            <Accordion defaultActiveKey="0">
+                            <Accordion >
                                 <Card>
                                     <Card.Header>
                                         <Accordion.Toggle as={Button} variant="link" eventKey="0">
@@ -58,8 +89,15 @@ class Single extends React.Component {
                                         </Accordion.Toggle>
                                     </Card.Header>
                                     <Accordion.Collapse eventKey="0">
-                                        <Card.Body>
-                                            Aqui va a venir el listado de comics de {this.state.heroe.name}
+                                        <Card.Body className="single-body-comics">
+                                            <ul className="list-group list-group-flush">
+                                            {
+                                                this.state.comicList.map( (comics) => {
+                                                        // console.log(comics);
+                                                    return <li key={comics.id} className="list-group-item"><Link to={`/comic/${comics.id}`} className="alert-link">{comics.title}</Link></li>
+                                                })
+                                            }
+                                            </ul>
                                         </Card.Body>
                                     </Accordion.Collapse>
                                 </Card>
@@ -70,8 +108,15 @@ class Single extends React.Component {
                                         </Accordion.Toggle>
                                     </Card.Header>
                                     <Accordion.Collapse eventKey="1">
-                                        <Card.Body>
-                                            Aqui va a venir el listado de historias de {this.state.heroe.name}
+                                        <Card.Body className="single-body-stories">
+                                        <ul className="list-group list-group-flush">
+                                            {
+                                                this.state.storiesList.map( (stories) => {
+                                                        // console.log(stories);
+                                                    return <li key={stories.id} className="list-group-item"><Link to={`/comic/${stories.id}`} className="alert-link">{stories.title}</Link></li>
+                                                })
+                                            }
+                                            </ul>
                                         </Card.Body>
                                     </Accordion.Collapse>
                                 </Card>
@@ -82,8 +127,15 @@ class Single extends React.Component {
                                         </Accordion.Toggle>
                                     </Card.Header>
                                     <Accordion.Collapse eventKey="2">
-                                        <Card.Body>
-                                            Aqui va a venir el listado de eventos de {this.state.heroe.name}
+                                        <Card.Body className="single-body-events">
+                                        <ul className="list-group list-group-flush">
+                                            {
+                                                this.state.eventsList.map( (events) => {
+                                                        console.log(events);
+                                                    return <li key={events.id} className="list-group-item"><Link to={`/comic/${events.id}`} className="alert-link">{events.title}</Link></li>
+                                                })
+                                            }
+                                            </ul>
                                         </Card.Body>
                                     </Accordion.Collapse>
                                 </Card>
@@ -95,7 +147,14 @@ class Single extends React.Component {
                                     </Card.Header>
                                     <Accordion.Collapse eventKey="3">
                                         <Card.Body>
-                                            Aqui va a venir el listado de series de {this.state.heroe.name}
+                                        <ul className="list-group list-group-flush">
+                                            {
+                                                this.state.seriesList.map( (series) => {
+                                                        // console.log(series);
+                                                    return <li key={series.id} className="list-group-item"><Link to={`/comic/${series.id}`} className="alert-link">{series.title}</Link></li>
+                                                })
+                                            }
+                                            </ul>
                                         </Card.Body>
                                     </Accordion.Collapse>
                                 </Card>
@@ -105,12 +164,24 @@ class Single extends React.Component {
                             <img src={this.state.heroeImg} alt={this.state.heroe.name}/>
                             <h1>{this.state.heroe.name}</h1>
                             <p>{this.state.heroe.description}</p>
-                            <p>
-                                <strong>Comics: </strong>{this.state.comics.available}<br/>
-                                <strong>Historias: </strong>{this.state.stories.available}<br/>
-                                <strong>Eventos: </strong>{this.state.events.available}<br/>
-                                <strong>Series: </strong>{this.state.series.available}<br/>
-                            </p>
+                            <ul className="list-group">
+                                <li className="list-group-item d-flex justify-content-between align-items-center">
+                                    Comics:
+                                    <span className="badge badge-primary badge-pill">{this.state.comics.available}</span>
+                                </li>
+                                <li className="list-group-item d-flex justify-content-between align-items-center">
+                                    Historias:
+                                    <span className="badge badge-primary badge-pill">{this.state.stories.available}</span>
+                                </li>
+                                <li className="list-group-item d-flex justify-content-between align-items-center">
+                                    Eventos:
+                                    <span className="badge badge-primary badge-pill">{this.state.events.available}</span>
+                                </li>
+                                <li className="list-group-item d-flex justify-content-between align-items-center">
+                                    Series:
+                                    <span className="badge badge-primary badge-pill">{this.state.series.available}</span>
+                                </li>
+                            </ul>
                         </Col>
                     </Row>
                 </Container>

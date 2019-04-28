@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import { getCharacterInfo } from "../../service/services";
 import Spinner from 'react-bootstrap/Spinner';
 import './card.scss';
+// eslint-disable-next-line
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import Col from 'react-bootstrap/Col';
 

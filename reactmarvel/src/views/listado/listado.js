@@ -44,6 +44,7 @@ class Listado extends React.Component {
             paginaActual: parseInt(page),
         });
         getCharacters(this.state.paginaActual).then(response => {
+            console.log(this.state.paginaActual);
             const heroes = response.data.results;
             this.setState({
                 heroes: heroes,
@@ -78,6 +79,7 @@ class Listado extends React.Component {
                     </Row>
                     <Row>
                         <Col>
+                        {console.log(this.state.totalHeroe / 21)}
                             <Pagination onChange={this.onChange} current={this.state.paginaActual} total={this.state.totalHeroe / 21} />
                         </Col>
                     </Row>

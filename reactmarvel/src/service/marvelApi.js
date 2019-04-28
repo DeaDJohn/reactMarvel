@@ -87,3 +87,74 @@ export const getComicInfo = (comicId = null) => {
     }
     return Promise.reject({ message: 'characterId is not defined' });
 };
+
+export const getComicsByCharacters = (heroeId = null) => {
+
+    const URI = '/v1/public/characters/';
+    const url = `${config.BASE_URL}${URI}${heroeId}/comics`;
+    const timeStamp = moment().unix();
+    const queryParams = {
+        ts: timeStamp,
+        apikey: config.API_PUBLIC,
+        hash: CryptoJS.MD5(timeStamp + config.API_PRIVATE + config.API_PUBLIC).toString(CryptoJS.enc.Hex),
+        limit: 21,
+    };
+
+    return axios
+        .get(url, { params: queryParams })
+        .then((response) => Promise.resolve(response.data))
+        .catch((error) => Promise.reject(error));
+};
+
+export const getSeriesByCharacters = (heroeId = null) => {
+
+    const URI = '/v1/public/characters/';
+    const url = `${config.BASE_URL}${URI}${heroeId}/series`;
+    const timeStamp = moment().unix();
+    const queryParams = {
+        ts: timeStamp,
+        apikey: config.API_PUBLIC,
+        hash: CryptoJS.MD5(timeStamp + config.API_PRIVATE + config.API_PUBLIC).toString(CryptoJS.enc.Hex),
+        limit: 21,
+    };
+
+    return axios
+        .get(url, { params: queryParams })
+        .then((response) => Promise.resolve(response.data))
+        .catch((error) => Promise.reject(error));
+};
+
+export const getStoriesByCharacters = (heroeId = null) => {
+
+    const URI = '/v1/public/characters/';
+    const url = `${config.BASE_URL}${URI}${heroeId}/stories`;
+    const timeStamp = moment().unix();
+    const queryParams = {
+        ts: timeStamp,
+        apikey: config.API_PUBLIC,
+        hash: CryptoJS.MD5(timeStamp + config.API_PRIVATE + config.API_PUBLIC).toString(CryptoJS.enc.Hex),
+        limit: 21,
+    };
+
+    return axios
+        .get(url, { params: queryParams })
+        .then((response) => Promise.resolve(response.data))
+        .catch((error) => Promise.reject(error));
+};
+export const getEventsByCharacters = (heroeId = null) => {
+
+    const URI = '/v1/public/characters/';
+    const url = `${config.BASE_URL}${URI}${heroeId}/events`;
+    const timeStamp = moment().unix();
+    const queryParams = {
+        ts: timeStamp,
+        apikey: config.API_PUBLIC,
+        hash: CryptoJS.MD5(timeStamp + config.API_PRIVATE + config.API_PUBLIC).toString(CryptoJS.enc.Hex),
+        limit: 21,
+    };
+
+    return axios
+        .get(url, { params: queryParams })
+        .then((response) => Promise.resolve(response.data))
+        .catch((error) => Promise.reject(error));
+};
