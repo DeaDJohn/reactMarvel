@@ -20,12 +20,11 @@ class Listado extends React.Component {
         this.state = {
             heroes: [],
             loading: true,
-            paginaActual: 1,
+            paginaActual: parseInt(this.props.match.params.page),
             totalHeroe: 0
         };
     }
     componentWillMount() {
-        // console.log(this.state.paginaActual);
         getCharacters(this.state.paginaActual).then(response => {
             const heroes = response.data.results;
             const totalHeroe = response.data.total;
@@ -36,6 +35,7 @@ class Listado extends React.Component {
                 totalHeroe
             });
         });
+        console.log(this.state.paginaActual);
     }
 
     onChange = (page) => {
@@ -79,8 +79,7 @@ class Listado extends React.Component {
                     </Row>
                     <Row>
                         <Col>
-                        {console.log(this.state.totalHeroe / 21)}
-                            <Pagination onChange={this.onChange} current={this.state.paginaActual} total={this.state.totalHeroe / 21} />
+                            <Pagination onChange={this.onChange}  current={this.state.paginaActual} total={this.state.totalHeroe / 21} />
                         </Col>
                     </Row>
                 </Container>

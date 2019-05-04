@@ -22,7 +22,7 @@ class ListadoComics extends React.Component {
         this.state = {
             comics: [],
             loading: true,
-            paginaActual: 1,
+            paginaActual: parseInt(this.props.match.params.page),
             totalcomic: 0
         };
     }
@@ -34,7 +34,7 @@ class ListadoComics extends React.Component {
             this.setState({
                 comics: comics,
                 loading: false,
-                paginaActual: this.props.match.params.page,
+                paginaActual: parseInt(this.props.match.params.page),
                 totalcomic
             });
         });
@@ -69,8 +69,8 @@ class ListadoComics extends React.Component {
                     size = { 75 }
                     color = { '#123abc' }
                     loading = { this.state.loading }
-                    /> <
-                    /div>
+                    /> < /
+                    div >
                 ) : (
                     this.state.comics.map((comic) => {
                         console.log(comic.thumbnail.path);
@@ -91,7 +91,8 @@ class ListadoComics extends React.Component {
                             Card.Title > < h3 > { comic.title } < /h3></Card.Title >
                             <
                             Card.Text dangerouslySetInnerHTML = {
-                                { __html: comic.description } } >
+                                { __html: comic.description }
+                            } >
 
                             <
                             /Card.Text>
@@ -101,8 +102,8 @@ class ListadoComics extends React.Component {
                             component = { SingleComic } > Saber más < /Link>
 
                             <
-                            /Card.Body> <
-                            /Card> <
+                            /Card.Body> < /
+                            Card > <
                             /Col>
 
                         );
@@ -117,10 +118,10 @@ class ListadoComics extends React.Component {
             Pagination onChange = { this.onChange }
             current = { this.state.paginaActual }
             total = { this.state.totalcomic / 21 }
-            /> <
-            /Col> <
-            /Row> <
-            /Container> <
+            /> < /
+            Col > <
+            /Row> < /
+            Container > <
             /div>     
         );
     }
