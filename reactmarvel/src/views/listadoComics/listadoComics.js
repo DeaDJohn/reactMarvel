@@ -8,7 +8,7 @@ import { getComics } from "../../service/services";
 import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
 import Header from '../../components/header';
-import SingleComic from "../single/singleComic";
+
 
 import Card from 'react-bootstrap/Card';
 import { PacmanLoader } from 'react-spinners';
@@ -42,9 +42,9 @@ class ListadoComics extends React.Component {
 
     onChange = (page) => {
         this.setState({
-            paginaActual: page,
+            loading: true,
         });
-        getComics(this.state.paginaActual).then(response => {
+        getComics(page).then(response => {
             const comics = response.data.results;
             this.setState({
                 comics: comics,
@@ -54,75 +54,61 @@ class ListadoComics extends React.Component {
     }
 
     render() {
-        return ( <
-            div className = "listado text-center" >
-            <
-            Header titulo = "Comics" / >
-            <
-            Container >
-            <
-            Row > {
-                this.state.loading ? ( <
-                    div className = "loader" >
-                    <
-                    PacmanLoader sizeUnit = { "px" }
-                    size = { 75 }
-                    color = { '#123abc' }
-                    loading = { this.state.loading }
-                    /> < /
-                    div >
-                ) : (
-                    this.state.comics.map((comic) => {
-                        console.log(comic.thumbnail.path);
-                        return ( <
-                            Col xs = { 12 }
-                            sm = { 6 }
-                            md = { 4 }
-                            className = "marvelCard" >
-                            <
-                            Card >
-                            <
-                            Card.Img variant = "top"
-                            alt = { comic.title }
-                            src = { comic.thumbnail.path + '/standard_fantastic.jpg' }
-                            /> <
-                            Card.Body >
-                            <
-                            Card.Title > < h3 > { comic.title } < /h3></Card.Title >
-                            <
-                            Card.Text dangerouslySetInnerHTML = {
-                                { __html: comic.description }
-                            } >
+        return ( 
+        <div className = "listado text-center" >
+            <Header titulo = "Comics" />
+            <Container>
+                <Row>
+                    {
+                    this.state.loading ? ( 
+                        <div className = "loader" >
+                            <PacmanLoader sizeUnit = { "px" }
+                            size = { 75 }
+                            color = { '#123abc' }
+                            loading = { this.state.loading }
+                        />
+                    </div>
+                    ) : (
+                        this.state.comics.map((comic) => {
+                            return ( 
+                                <Col xs = { 12 }
+                                    sm = { 6 }
+                                    md = { 4 }
+                                    className = "marvelCard"
+                                    key={comic.id}>
+                                    <Card>
+                                    <Card.Img variant = "top"
+                                        alt = { comic.title }
+                                        src = { comic.thumbnail.path + '/standard_fantastic.jpg' }
+                                    /> 
+                                    <Card.Body>
+                                        <Card.Title> < h3 > { comic.title } </h3></Card.Title >
+                                        {/* <Card.Text dangerouslySetInnerHTML = {
+                                            { __html: comic.description }
+                                        } >
+                                        </Card.Text> */}
 
-                            <
-                            /Card.Text>
+                                        <Link to = { `/comic/${comic.id}` }> Saber más </Link>
 
-                            <
-                            Link to = { `/comic/${comic.id}` }
-                            component = { SingleComic } > Saber más < /Link>
+                                    </Card.Body> 
+                                    </Card>
+                                </Col>
 
-                            <
-                            /Card.Body> < /
-                            Card > <
-                            /Col>
-
-                        );
-                    })
-                )
-            } <
-            /Row> <
-            Row >
-            <
-            Col >
-            <
-            Pagination onChange = { this.onChange }
-            current = { this.state.paginaActual }
-            total = { this.state.totalcomic / 21 }
-            /> < /
-            Col > <
-            /Row> < /
-            Container > <
-            /div>     
+                            );
+                        })
+                    )
+                } 
+                </Row>
+                <Row >
+                    <Col>
+                        <Pagination onChange = { this.onChange }
+                            current = { this.state.paginaActual }
+                            total = { this.state.totalcomic / 21 }
+                        />
+                    </Col>
+                </Row>
+            </Container>
+        </div>     
         );
     }
 }

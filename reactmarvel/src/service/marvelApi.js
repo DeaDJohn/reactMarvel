@@ -158,3 +158,20 @@ export const getEventsByCharacters = (heroeId = null) => {
         .then((response) => Promise.resolve(response.data))
         .catch((error) => Promise.reject(error));
 };
+
+export const getCreatorsByUrl = (creatorUrl = null) => {
+
+    const url = creatorUrl;
+    const timeStamp = moment().unix();
+    const queryParams = {
+        ts: timeStamp,
+        apikey: config.API_PUBLIC,
+        hash: CryptoJS.MD5(timeStamp + config.API_PRIVATE + config.API_PUBLIC).toString(CryptoJS.enc.Hex),
+        limit: 21,
+    };
+
+    return axios
+        .get(url, { params: queryParams })
+        .then((response) => Promise.resolve(response.data))
+        .catch((error) => Promise.reject(error));
+};

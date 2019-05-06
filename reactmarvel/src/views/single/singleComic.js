@@ -4,12 +4,10 @@ import Container from 'react-bootstrap/Container';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Accordion from 'react-bootstrap/Accordion';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import Header from '../../components/header';
 
-import { getComicInfo } from "../../service/services";
+import { getComicInfo, getCreatorsByUrl } from "../../service/services";
+import { PacmanLoader } from 'react-spinners';
 
 class SingleComic extends React.Component {
     
@@ -23,14 +21,14 @@ class SingleComic extends React.Component {
             stories: [],
             series: [],
             events: [],
+            creators: []
         };
     }
     componentWillMount() {
-        console.log(this.state.idComic);
         getComicInfo(this.state.idComic).then(response => {
             const comic = response.data.results[0];
+            console.log(comic)
             const image = comic.thumbnail.path +'/standard_fantastic.'+comic.thumbnail.extension;
-            console.log(comic);
             this.setState({
                 comic: comic,
                 comicImg: image,
@@ -40,78 +38,74 @@ class SingleComic extends React.Component {
                 events: comic.events,
                 loading: false
             });
+            // this.state.comic.creators.items.map((items) => {
+                // getCreatorsByUrl(items.resourceURI).then(response =>{
+                //     console.log(response.data.results[0])
+                // })
+            // })
+            // getCreatorsByUrl();
         });
     }
+    // componentDidUpdate(prevState){
 
+    //     console.log(this.state.comic.creators);
+    //     if (this.state.comic.creators.available > 0 && (prevState.comic.creators.collectionURI !== this.state.comic.creators.collectionURI)){
+    //         getCreatorsByUrl(this.state.comic.creators.collectionURI).then(response =>{
+    //             console.log(response.data.results[0])
+    //             this.setState({
+    //                 creators: response.data.results
+    //             });
+    //         })
+    //     } 
+    // }
     render(){
         return(
             <div className="single">
                 <Header titulo={this.state.comic.title} />
                 <Container key={this.state.comic.id}>
                     <Row>
-                        <Col xs={12} md={8} className="single-desc">
-                            <Accordion defaultActiveKey="0">
-                                <Card>
-                                    <Card.Header>
-                                        <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                            Comics
-                                        </Accordion.Toggle>
-                                    </Card.Header>
-                                    <Accordion.Collapse eventKey="0">
-                                        <Card.Body>
-                                            Aqui va a venir el listado de comics de {this.state.comic.title}
-                                        </Card.Body>
-                                    </Accordion.Collapse>
-                                </Card>
-                                <Card>
-                                    <Card.Header>
-                                        <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                                        Historias
-                                        </Accordion.Toggle>
-                                    </Card.Header>
-                                    <Accordion.Collapse eventKey="1">
-                                        <Card.Body>
-                                            Aqui va a venir el listado de historias de {this.state.comic.title}
-                                        </Card.Body>
-                                    </Accordion.Collapse>
-                                </Card>
-                                <Card>
-                                    <Card.Header>
-                                        <Accordion.Toggle as={Button} variant="link" eventKey="2">
-                                        Eventos
-                                        </Accordion.Toggle>
-                                    </Card.Header>
-                                    <Accordion.Collapse eventKey="2">
-                                        <Card.Body>
-                                            Aqui va a venir el listado de eventos de {this.state.comic.title}
-                                        </Card.Body>
-                                    </Accordion.Collapse>
-                                </Card>
-                                <Card>
-                                    <Card.Header>
-                                        <Accordion.Toggle as={Button} variant="link" eventKey="3">
-                                        Series
-                                        </Accordion.Toggle>
-                                    </Card.Header>
-                                    <Accordion.Collapse eventKey="3">
-                                        <Card.Body>
-                                            Aqui va a venir el listado de series de {this.state.comic.title}
-                                        </Card.Body>
-                                    </Accordion.Collapse>
-                                </Card>
-                            </Accordion>
-                        </Col>
-                        <Col xs={12} md={4} className="single-info">
-                            <img src={this.state.comicImg} alt={this.state.comic.title}/>
-                            <h1>{this.state.comic.title}</h1>
-                            <p>{this.state.comic.description}</p>
-                            {/* <p>
-                                <strong>Comics: </strong>{this.state.comics.available}<br/>
-                                <strong>Historias: </strong>{this.state.stories.available}<br/>
-                                <strong>Eventos: </strong>{this.state.events.available}<br/>
-                                <strong>Series: </strong>{this.state.series.available}<br/>
-                            </p> */}
-                        </Col>
+                    {
+                        this.state.loading ? ( 
+                            <div className = "loader" >
+                                <PacmanLoader sizeUnit = { "px" }
+                                    size = { 75 }
+                                    color = { '#123abc' }
+                                    loading = { this.state.loading }
+                                />
+                            </div>
+                        ) : (
+                            <React.Fragment>
+                                <Col xs={12} md={8} className="single-desc">
+                                    {console.log(this.state.comic)}
+                                    <div className="single-desc-item single-desc-description">
+                                        <h4>Descripción:</h4>
+                                        <div className="post__content" dangerouslySetInnerHTML={{__html: this.state.comic.description}}></div>
+                                    </div>
+                                    <div className="single-desc-item single-desc-charcters">
+                                        <h4>Personajes:</h4>
+                                    </div>
+                                    <div className="single-desc-item single-desc-stories">
+                                        <h4>Historias:</h4>
+                                    </div>
+                                    <div className="single-desc-item single-desc-events">
+                                        <h4>Eventos:</h4>
+                                    </div>
+                                    <div className="single-desc-item single-desc-creators">
+                                        <h4>Creadores:</h4>
+                                        {
+                                            this.state.creators.map((creador) => {
+
+                                            })
+                                        }
+                                    </div>
+                                </Col>
+                                <Col xs={12} md={4} className="single-info">
+                                    <img src={this.state.comicImg} alt={this.state.comic.title}/>
+                                    <h3>{this.state.comic.title}</h3>
+                                </Col>
+                            </React.Fragment>
+                        )
+                        }
                     </Row>
                 </Container>
             </div>     

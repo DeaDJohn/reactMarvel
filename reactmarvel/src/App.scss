@@ -133,6 +133,11 @@
             display: inline-block;
         }
     }
+    .single-desc{
+        &-item{
+            margin-bottom: 4vh;
+        }
+    }
 }
 
 @keyframes App-logo-spin {
