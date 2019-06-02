@@ -5,7 +5,7 @@ import moment from 'moment';
 const config = {
     API_PUBLIC: 'e250641ee1d462b8a2a5d68ad58e5869',
     API_PRIVATE: 'dda24246421a52feec1dfc5c5db3b66a7b673bdd',
-    BASE_URL: `${window.location.protocol || 'http'}//gateway.marvel.com:80`
+    BASE_URL: `${window.location.protocol || 'https'}//gateway.marvel.com`
 };
 
 export const getCharacters = (currentPage) => {
