@@ -16,7 +16,7 @@ class Home extends React.Component {
                     <Carousel.Item>
                         <img
                         className="d-block w-100"
-                        src="http://www.cinefagos.es/wp-content/uploads/2015/04/Marvel.jpg"
+                        src="https://www.universomarvel.com/wp-content/uploads/2017/12/marvel.jpeg"
                         alt="First slide"
                         />
                         <Carousel.Caption>
