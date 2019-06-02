@@ -42,6 +42,7 @@ class ListadoComics extends React.Component {
 
     onChange = (page) => {
         this.setState({
+            paginaActual: parseInt(page),
             loading: true,
         });
         getComics(page).then(response => {
@@ -71,9 +72,7 @@ class ListadoComics extends React.Component {
                     ) : (
                         this.state.comics.map((comic) => {
                             return ( 
-                                <Col xs = { 12 }
-                                    sm = { 6 }
-                                    md = { 4 }
+                                <Col xs={12}  md={6}  xl={4}
                                     className = "marvelCard"
                                     key={comic.id}>
                                     <Card>
@@ -100,12 +99,10 @@ class ListadoComics extends React.Component {
                 } 
                 </Row>
                 <Row >
+
                     <Col>
-                        <Pagination onChange = { this.onChange }
-                            current = { this.state.paginaActual }
-                            total = { this.state.totalcomic / 21 }
-                        />
-                    </Col>
+                            <Pagination onChange={this.onChange} pageSize={21}  current={this.state.paginaActual} total={ parseInt(this.state.totalcomic)} />
+                        </Col>
                 </Row>
             </Container>
         </div>     

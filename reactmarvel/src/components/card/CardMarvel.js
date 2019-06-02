@@ -31,7 +31,7 @@ import Col from 'react-bootstrap/Col';
     }
       render(){
           return (
-            <Col xs={6} md={4} className="marvelCard">
+            <Col xs={12}  md={6}  xl={4} className="marvelCard">
                 <Card >
                     <Card.Img variant="top" alt={this.state.heroe.name} src={this.state.heroeImg} />
                     <Card.Body>
