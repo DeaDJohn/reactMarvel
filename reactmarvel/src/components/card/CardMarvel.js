@@ -33,7 +33,9 @@ import Col from 'react-bootstrap/Col';
           return (
             <Col xs={12}  md={6}  xl={4} className="marvelCard">
                 <Card >
-                    <Card.Img variant="top" alt={this.state.heroe.name} src={this.state.heroeImg} />
+                    <Link to={`/heroe/${this.state.heroe.id}`} className="marvelCard-linkImage">
+                        <Card.Img variant="top" alt={this.state.heroe.name} src={this.state.heroeImg} />
+                    </Link>
                     <Card.Body>
                         <Card.Title><h3>{this.state.heroe.name}</h3></Card.Title>
                             

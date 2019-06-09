@@ -133,10 +133,30 @@
             display: inline-block;
         }
     }
-    .single-desc{
-        &-item{
+    .single-desc {
+        &-item {
             margin-bottom: 4vh;
         }
+    }
+    .marvelCard {
+        &-linkImage {
+            overflow: hidden;
+            img {
+                transform: scale(1);
+                transition: all .3s ease-out;
+            }
+            &:hover,
+            &:focus {
+                img {
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+    .rc-pagination {
+        display: flex;
+        justify-content: center;
+        padding: 4vw 0;
     }
 }
 
