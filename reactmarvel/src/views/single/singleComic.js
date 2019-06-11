@@ -7,8 +7,9 @@ import Col from 'react-bootstrap/Col';
 import Header from '../../components/header';
 
 import { getComicInfo, getCreatorsByUrl } from "../../service/services";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import { PacmanLoader } from 'react-spinners';
-
+import slugify from '../../helpers/slugify';
 class SingleComic extends React.Component {
     
     constructor(props) {
@@ -21,7 +22,8 @@ class SingleComic extends React.Component {
             stories: [],
             series: [],
             events: [],
-            creators: []
+            creators: [],
+            characters: []
         };
     }
     componentWillMount() {
@@ -33,9 +35,11 @@ class SingleComic extends React.Component {
                 comic: comic,
                 comicImg: image,
                 comics: comic.comics,
-                stories: comic.stories,
+                stories: comic.stories.items,
                 series: comic.series,
                 events: comic.events,
+                creators: comic.creators.items,
+                characters: comic.characters.items,
                 loading: false
             });
             // this.state.comic.creators.items.map((items) => {
@@ -83,25 +87,41 @@ class SingleComic extends React.Component {
                                     </div>
                                     <div className="single-desc-item single-desc-charcters">
                                         <h4>Personajes:</h4>
+                                        <ul>
+                                            {
+                                                this.state.characters.map((character) => {
+                                                    return <li key={slugify(character.name)}><Link to={`/heroe/${character.resourceURI.split("http://gateway.marvel.com/v1/public/characters/").pop()}`}>{character.name}</Link></li>
+                                                })
+                                            }
+                                        </ul>
                                     </div>
                                     <div className="single-desc-item single-desc-stories">
                                         <h4>Historias:</h4>
+                                        <ul>
+                                            {
+                                                this.state.stories.map((story) => {
+                                                    console.log(story);
+                                                    return <li key={slugify(story.name)}>{story.name} <span>({story.type})</span></li>
+                                                })
+                                            }
+                                        </ul>
                                     </div>
                                     <div className="single-desc-item single-desc-events">
                                         <h4>Eventos:</h4>
                                     </div>
                                     <div className="single-desc-item single-desc-creators">
                                         <h4>Creadores:</h4>
-                                        {
-                                            this.state.creators.map((creador) => {
-
-                                            })
-                                        }
+                                        <ul>
+                                            {
+                                                this.state.creators.map((creador) => {
+                                                    return <li key={slugify(creador.name)}>{creador.name} <span>({creador.role})</span></li>
+                                                })
+                                            }
+                                        </ul>
                                     </div>
                                 </Col>
                                 <Col xs={12} md={4} className="single-info">
                                     <img src={this.state.comicImg} alt={this.state.comic.title}/>
-                                    <h3>{this.state.comic.title}</h3>
                                 </Col>
                             </React.Fragment>
                         )

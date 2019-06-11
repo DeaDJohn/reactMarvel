@@ -32,7 +32,7 @@ class Single extends React.Component {
         };
     }
     componentWillMount() {
-        console.log(this.state.idHeroe);
+        // console.log(this.state.idHeroe);
         getCharacterInfo(this.state.idHeroe).then(response => {
             const heroe = response.data.results[0];
             const image = heroe.thumbnail.path +'/standard_fantastic.'+heroe.thumbnail.extension;
@@ -150,7 +150,7 @@ class Single extends React.Component {
                                         <ul className="list-group list-group-flush">
                                             {
                                                 this.state.seriesList.map( (series) => {
-                                                        // console.log(series);
+                                                        console.log(series);
                                                     return <li key={series.id} className="list-group-item"><Link to={`/comic/${series.id}`} className="alert-link">{series.title}</Link></li>
                                                 })
                                             }
