@@ -1,4 +1,4 @@
-import { getCharacters, getCharacterInfo, getComics, getComicInfo, getComicsByCharacters, getSeriesByCharacters, getStoriesByCharacters, getEventsByCharacters, getCreatorsByUrl } from './marvelApi';
+import { getCharacters, getCharacterInfo, getComics, getComicInfo, getComicsByCharacters, getSeriesByCharacters, getStoriesByCharacters, getEventsByCharacters, getCreatorsByUrl, getEvents, getEventsInfo } from './marvelApi';
 
 export {
     getCharacters,
@@ -9,5 +9,7 @@ export {
     getSeriesByCharacters,
     getStoriesByCharacters,
     getEventsByCharacters,
-    getCreatorsByUrl
+    getCreatorsByUrl,
+    getEvents,
+    getEventsInfo
 };

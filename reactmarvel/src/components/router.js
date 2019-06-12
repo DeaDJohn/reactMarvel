@@ -1,12 +1,14 @@
 import React from "react";
 import '../App.scss';
-import {  Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import  Home  from "../views/home/home";
 import Listado from "../views/listado/listado";
 import ListadoComics from "../views/listadoComics/listadoComics";
+import ListadoEventos from "../views/listadoEventos/listadoEventos";
 import Single from "../views/single/single";
 import SingleComic from "../views/single/singleComic";
+import SingleEvento from "../views/single/singleEvento";
 import Footer from "../components/footer/footer";
 // Each logical "route" has two components, one for
 // the sidebar and one for the main area. We want to
@@ -37,6 +39,16 @@ const routes = [
 	path: "/comic/:id",
 	main: SingleComic,
 	exact: true
+  },
+  {
+	path: "/events/:page",
+	main: ListadoEventos,
+	exact: true
+  },
+  {
+	path: "/event/:id",
+	main: SingleEvento,
+	exact: true
   }
 ];
 
@@ -53,6 +65,7 @@ function menuHeroes () {
 					<Nav className="mr-auto">
 						<Nav.Link href="/heroes/1">Heroes</Nav.Link>
 						<Nav.Link href="/comics/1">Comics</Nav.Link>
+						<Nav.Link href="/events/1">Eventos</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>
 			</Navbar>
