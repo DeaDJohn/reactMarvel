@@ -3,11 +3,12 @@ import './single.scss';
 import Container from 'react-bootstrap/Container';
 
 import Row from 'react-bootstrap/Row';
+import Figure from 'react-bootstrap/Figure';
 import Col from 'react-bootstrap/Col';
 import Header from '../../components/header';
-
-import { getComicInfo, getCreatorsByUrl } from "../../service/services";
+// eslint-disable-next-line
 import { BrowserRouter as Router, Link } from "react-router-dom";
+import { getComicInfo } from "../../service/services";
 import { PacmanLoader } from 'react-spinners';
 import slugify from '../../helpers/slugify';
 class SingleComic extends React.Component {
@@ -121,7 +122,18 @@ class SingleComic extends React.Component {
                                     </div>
                                 </Col>
                                 <Col xs={12} md={4} className="single-info">
-                                    <img src={this.state.comicImg} alt={this.state.comic.title}/>
+                                    <Figure>
+                                        <Figure.Image
+                                            width={380}
+                                            height={380}
+                                            alt={this.state.comic.title}
+                                            src={this.state.comicImg}
+                                            thumbnail="true"
+                                        />
+                                        <Figure.Caption>
+                                            {this.state.comic.title}
+                                        </Figure.Caption>
+                                    </Figure>
                                 </Col>
                             </React.Fragment>
                         )

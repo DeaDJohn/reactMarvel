@@ -42,12 +42,14 @@ import Col from 'react-bootstrap/Col';
                         {this.state.loading ? (
                             <Spinner animation="grow" />
                             ) : (
-                                <Card.Text>
-                                    {this.state.heroe.description}
-                                </Card.Text>
+                                <React.Fragment>
+                                    <Card.Text>
+                                        {this.state.heroe.description}
+                                    </Card.Text>
+                                    <Link to={`/heroe/${this.state.heroe.id}`}>Saber más</Link>
+                                </React.Fragment>
                         )}
                             
-                                <Link to={`/heroe/${this.state.heroe.id}`}>Saber más</Link>
                             
                     </Card.Body>
                 </Card>

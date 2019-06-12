@@ -16,7 +16,7 @@ class Home extends React.Component {
                     <Carousel.Item>
                         <img
                         className="d-block w-100"
-                        src="https://www.universomarvel.com/wp-content/uploads/2017/12/marvel.jpeg"
+                        src="../../assets/marvel-compressor.jpeg"
                         alt="First slide"
                         />
                         <Carousel.Caption>
@@ -27,7 +27,7 @@ class Home extends React.Component {
                     <Carousel.Item>
                         <img
                         className="d-block w-100"
-                        src="https://hipertextual.com/files/2019/02/hipertextual-escena-post-creditos-capitana-marvel-conectada-con-avengers-4endgame-2019678495-4096x2304.jpg"
+                        src="../../assets/capitana_marvel.jpg"
                         alt="Third slide"
                         />
 

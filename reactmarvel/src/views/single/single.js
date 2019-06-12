@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Figure from 'react-bootstrap/Figure';
 import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -161,8 +162,18 @@ class Single extends React.Component {
                             </Accordion>
                         </Col>
                         <Col xs={12} md={4} className="single-info">
-                            <img src={this.state.heroeImg} alt={this.state.heroe.name}/>
-                            <h1>{this.state.heroe.name}</h1>
+                            <Figure>
+                                <Figure.Image
+                                    width={380}
+                                    height={380}
+                                    alt={this.state.heroe.name}
+                                    src={this.state.heroeImg}
+                                    thumbnail="true"
+                                />
+                                <Figure.Caption>
+                                    {this.state.heroe.name}
+                                </Figure.Caption>
+                            </Figure>
                             <p>{this.state.heroe.description}</p>
                             <ul className="list-group">
                                 <li className="list-group-item d-flex justify-content-between align-items-center">
