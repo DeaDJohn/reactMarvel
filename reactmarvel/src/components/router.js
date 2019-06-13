@@ -5,12 +5,14 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import  Home  from "../views/home/home";
 import Listado from "../views/listado/listado";
 import ListadoSeries from "../views/listado/listadoSeries";
+import ListadoStories from "../views/listado/listadoStories";
 import ListadoComics from "../views/listadoComics/listadoComics";
 import ListadoEventos from "../views/listadoEventos/listadoEventos";
 import Single from "../views/single/single";
 import SingleComic from "../views/single/singleComic";
 import SingleEvento from "../views/single/singleEvento";
 import SingleSerie from "../views/single/singleSerie";
+import SingleStory from "../views/single/singleStory";
 import Footer from "../components/footer/footer";
 // Each logical "route" has two components, one for
 // the sidebar and one for the main area. We want to
@@ -61,6 +63,16 @@ const routes = [
 	path: "/serie/:id",
 	main: SingleSerie,
 	exact: true
+  },
+  {
+	path: "/stories/:page",
+	main: ListadoStories,
+	exact: true
+  },
+  {
+	path: "/story/:id",
+	main: SingleStory,
+	exact: true
   }
 ];
 
@@ -79,6 +91,7 @@ function menuHeroes () {
 						<Nav.Link href="/comics/1">Comics</Nav.Link>
 						<Nav.Link href="/events/1">Eventos</Nav.Link>
 						<Nav.Link href="/series/1">Series</Nav.Link>
+						<Nav.Link href="/stories/1">Historias</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>
 			</Navbar>

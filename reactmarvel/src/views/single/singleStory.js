@@ -8,37 +8,42 @@ import Col from 'react-bootstrap/Col';
 import Header from '../../components/header';
 // eslint-disable-next-line
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import { getSeriesInfo } from "../../service/services";
+import { getStoriesInfo } from "../../service/services";
 import { PacmanLoader } from 'react-spinners';
 import slugify from '../../helpers/slugify';
-class SingleSerie extends React.Component {
+class SingleStory extends React.Component {
     
     constructor(props) {
         super(props);
         this.state = {
-            serie: [],
+            story: [],
             loading: true,
-            idSeries: this.props.match.params.id,
+            idstorys: this.props.match.params.id,
             comics: [],
             stories: [],
-            series: [],
+            storys: [],
             creators: [],
             characters: []
         };
     }
     componentWillMount() {
-        getSeriesInfo(this.state.idSeries).then(response => {
-            const serie = response.data.results[0];
-            console.log(serie);
-            const image = serie.thumbnail.path +'/standard_fantastic.'+serie.thumbnail.extension;
+        getStoriesInfo(this.state.idstorys).then(response => {
+            const story = response.data.results[0];
+            console.log(story);
+            let image ="";
+            if (story.thumbnail  !== null){
+                 image = story.thumbnail.path +'/standard_fantastic.'+story.thumbnail.extension;
+            }else{
+                image = "https://upload.wikimedia.org/wikipedia/commons/0/04/MarvelLogo.svg";
+            }
             this.setState({
-                serie: serie,
+                story: story,
                 comicImg: image,
-                comics: serie.comics.items,
-                stories: serie.stories.items,
-                series: serie.series,
-                creators: serie.creators.items,
-                characters: serie.characters.items,
+                comics: story.comics.items,
+                series: story.series.items,
+                // storys: story.storys,
+                creators: story.creators.items,
+                characters: story.characters.items,
                 loading: false
             });
 
@@ -48,8 +53,8 @@ class SingleSerie extends React.Component {
     render(){
         return(
             <div className="single">
-                <Header titulo={this.state.serie.title} />
-                <Container key={this.state.serie.id}>
+                <Header titulo={this.state.story.title} />
+                <Container key={this.state.story.id}>
                     <Row>
                     {
                         this.state.loading ? ( 
@@ -66,7 +71,7 @@ class SingleSerie extends React.Component {
                                     {console.log(this.state.comic)}
                                     <div className="single-desc-item single-desc-description">
                                         <h4>Descripción:</h4>
-                                        <div className="post__content" dangerouslySetInnerHTML={{__html: this.state.serie.description}}></div>
+                                        <div className="post__content" dangerouslySetInnerHTML={{__html: this.state.story.description}}></div>
                                     </div>
                                     <div className="single-desc-item single-desc-charcters">
                                         <h4>Personajes:</h4>
@@ -79,16 +84,16 @@ class SingleSerie extends React.Component {
                                         </ul>
                                     </div>
                                     <div className="single-desc-item single-desc-stories">
-                                        <h4>Historias:</h4>
+                                        <h4>Series:</h4>
                                         <ul>
                                             {
-                                                this.state.stories.map((story) => {
-                                                    return <li key={slugify(story.name)}><Link to={`/story/${story.resourceURI.split("http://gateway.marvel.com/v1/public/stories/").pop()}`}>{story.name}</Link></li>
+                                                this.state.series.map((serie) => {
+                                                    return <li key={slugify(serie.name)}><Link to={`/serie/${serie.resourceURI.split("http://gateway.marvel.com/v1/public/series/").pop()}`}>{serie.name}</Link></li>
                                                 })
                                             }
                                         </ul>
                                     </div>
-                                    <div className="single-desc-item single-desc-series">
+                                    <div className="single-desc-item single-desc-storys">
                                         <h4>Comics:</h4>
                                         <ul>
                                             {
@@ -114,12 +119,12 @@ class SingleSerie extends React.Component {
                                         <Figure.Image
                                             width={380}
                                             height={380}
-                                            alt={this.state.serie.title}
+                                            alt={this.state.story.title}
                                             src={this.state.comicImg}
                                             thumbnail={true}
                                         />
                                         <Figure.Caption>
-                                            {this.state.serie.title}
+                                            {this.state.story.title}
                                         </Figure.Caption>
                                     </Figure>
                                 </Col>
@@ -133,4 +138,4 @@ class SingleSerie extends React.Component {
     }
 }
 
-export default SingleSerie;
+export default SingleStory;

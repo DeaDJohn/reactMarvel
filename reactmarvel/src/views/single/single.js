@@ -114,7 +114,7 @@ class Single extends React.Component {
                                             {
                                                 this.state.storiesList.map( (stories) => {
                                                         // console.log(stories);
-                                                    return <li key={stories.id} className="list-group-item"><Link to={`/comic/${stories.id}`} className="alert-link">{stories.title}</Link></li>
+                                                    return <li key={stories.id} className="list-group-item"><Link to={`/story/${stories.id}`} className="alert-link">{stories.title}</Link></li>
                                                 })
                                             }
                                             </ul>
@@ -133,7 +133,7 @@ class Single extends React.Component {
                                             {
                                                 this.state.eventsList.map( (events) => {
                                                         console.log(events);
-                                                    return <li key={events.id} className="list-group-item"><Link to={`/comic/${events.id}`} className="alert-link">{events.title}</Link></li>
+                                                    return <li key={events.id} className="list-group-item"><Link to={`/event/${events.id}`} className="alert-link">{events.title}</Link></li>
                                                 })
                                             }
                                             </ul>
@@ -152,7 +152,7 @@ class Single extends React.Component {
                                             {
                                                 this.state.seriesList.map( (series) => {
                                                         console.log(series);
-                                                    return <li key={series.id} className="list-group-item"><Link to={`/comic/${series.id}`} className="alert-link">{series.title}</Link></li>
+                                                    return <li key={series.id} className="list-group-item"><Link to={`/serie/${series.id}`} className="alert-link">{series.title}</Link></li>
                                                 })
                                             }
                                             </ul>

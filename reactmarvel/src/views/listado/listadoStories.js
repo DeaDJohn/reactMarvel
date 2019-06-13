@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Figure from 'react-bootstrap/Figure';
-import { getSeries } from "../../service/services";
+import { getStories } from "../../service/services";
 import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
 import Header from '../../components/header';
@@ -16,12 +16,12 @@ import { PacmanLoader } from 'react-spinners';
 // eslint-disable-next-line
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
-class ListadoSeries extends React.Component {
+class ListadoStories extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            series: [],
+            stories: [],
             loading: true,
             paginaActual: parseInt(this.props.match.params.page),
             totalcomic: 0
@@ -29,12 +29,12 @@ class ListadoSeries extends React.Component {
     }
     componentWillMount() {
         // console.log(this.state.paginaActual);
-        getSeries(this.state.paginaActual).then(response => {
+        getStories(this.state.paginaActual).then(response => {
             console.log(response);
-            const series = response.data.results;
+            const stories = response.data.results;
             const totalcomic = response.data.total;
             this.setState({
-                series: series,
+                stories: stories,
                 loading: false,
                 paginaActual: parseInt(this.props.match.params.page),
                 totalcomic
@@ -47,10 +47,10 @@ class ListadoSeries extends React.Component {
             paginaActual: parseInt(page),
             loading: true,
         });
-        getSeries(page).then(response => {
-            const series = response.data.results;
+        getStories(page).then(response => {
+            const stories = response.data.results;
             this.setState({
-                series: series,
+                stories: stories,
                 loading: false
             });
         });
@@ -59,7 +59,7 @@ class ListadoSeries extends React.Component {
     render() {
         return ( 
         <div className = "listado text-center" >
-            <Header titulo = "Series" />
+            <Header titulo = "Historias" />
             <Container>
                 <Row>
                     {
@@ -72,24 +72,24 @@ class ListadoSeries extends React.Component {
                         />
                     </div>
                     ) : (
-                        this.state.series.map((serie) => {
+                        this.state.stories.map((story) => {
                             return ( 
                                 // <Col xs={12}  md={6}  xl={4}
                                 //     className = "marvelCard"
-                                //     key={serie.id}>
+                                //     key={story.id}>
                                 //     <Card>
                                 //     <Card.Img variant = "top"
-                                //         alt = { serie.title }
-                                //         src = { serie.thumbnail.path + '/standard_fantastic.jpg' }
+                                //         alt = { story.title }
+                                //         src = { story.thumbnail.path + '/standard_fantastic.jpg' }
                                 //     /> 
                                 //     <Card.Body>
-                                //         <Card.Title> < h3 > { serie.title } </h3></Card.Title >
+                                //         <Card.Title> < h3 > { story.title } </h3></Card.Title >
                                 //         {/* <Card.Text dangerouslySetInnerHTML = {
-                                //             { __html: serie.description }
+                                //             { __html: story.description }
                                 //         } >
                                 //         </Card.Text> */}
 
-                                //         <Link to = { `/serie/${serie.id}` }> Saber más </Link>
+                                //         <Link to = { `/story/${story.id}` }> Saber más </Link>
 
                                 //     </Card.Body> 
                                 //     </Card>
@@ -100,14 +100,14 @@ class ListadoSeries extends React.Component {
                                     <Figure.Image
                                         width={250}
                                         height={250}
-                                        alt={serie.title}
-                                        src={serie.thumbnail.path + '/standard_fantastic.jpg'}
+                                        alt={story.title}
+                                        src="https://upload.wikimedia.org/wikipedia/commons/0/04/MarvelLogo.svg"
                                         
                                     />
                                     <Figure.Caption>
-                                        <h2>{serie.title}</h2>
+                                        <h2>{story.title}</h2>
                                     </Figure.Caption>
-                                    <Link to={`/serie/${serie.id}`} className="marvelCard-linkImage"></Link>
+                                    <Link to={`/story/${story.id}`} className="marvelCard-linkImage"></Link>
                                 </Figure>
                             </Col>
 
@@ -128,4 +128,4 @@ class ListadoSeries extends React.Component {
     }
 }
 
-export default ListadoSeries;
+export default ListadoStories;

@@ -37,8 +37,8 @@ class SingleComic extends React.Component {
                 comicImg: image,
                 comics: comic.comics,
                 stories: comic.stories.items,
-                series: comic.series,
-                events: comic.events,
+                series: comic.series.items,
+                events: comic.events.items,
                 creators: comic.creators.items,
                 characters: comic.characters.items,
                 loading: false
@@ -102,13 +102,21 @@ class SingleComic extends React.Component {
                                             {
                                                 this.state.stories.map((story) => {
                                                     console.log(story);
-                                                    return <li key={slugify(story.name)}>{story.name} <span>({story.type})</span></li>
+                                                    return <li key={slugify(story.name)}><Link to={`/story/${story.resourceURI.split("http://gateway.marvel.com/v1/public/stories/").pop()}`}>{story.name}</Link></li>
                                                 })
                                             }
                                         </ul>
                                     </div>
                                     <div className="single-desc-item single-desc-events">
                                         <h4>Eventos:</h4>
+                                        <ul>
+                                            {
+                                                this.state.events.map((event) => {
+                                                    console.log(event);
+                                                    return <li key={slugify(event.name)}><Link to={`/event/${event.resourceURI.split("http://gateway.marvel.com/v1/public/events/").pop()}`}>{event.name}</Link></li>
+                                                })
+                                            }
+                                        </ul>
                                     </div>
                                     <div className="single-desc-item single-desc-creators">
                                         <h4>Creadores:</h4>

@@ -11,7 +11,9 @@ import {
     getEvents,
     getEventsInfo,
     getSeriesInfo,
-    getSeries
+    getSeries,
+    getStoriesInfo,
+    getStories
 } from './marvelApi';
 
 export {
@@ -27,5 +29,7 @@ export {
     getEvents,
     getEventsInfo,
     getSeriesInfo,
-    getSeries
+    getSeries,
+    getStoriesInfo,
+    getStories
 };
