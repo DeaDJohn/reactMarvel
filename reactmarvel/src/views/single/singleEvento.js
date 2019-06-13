@@ -19,10 +19,9 @@ class SingleEvento extends React.Component {
             event: [],
             loading: true,
             idEvents: this.props.match.params.id,
-            events: [],
+            comics: [],
             stories: [],
             series: [],
-            events: [],
             creators: [],
             characters: []
         };
@@ -35,7 +34,7 @@ class SingleEvento extends React.Component {
             this.setState({
                 event: event,
                 comicImg: image,
-                comics: event.comics,
+                comics: event.comics.items,
                 stories: event.stories.items,
                 series: event.series,
                 events: event.events,
@@ -92,7 +91,14 @@ class SingleEvento extends React.Component {
                                         </ul>
                                     </div>
                                     <div className="single-desc-item single-desc-events">
-                                        <h4>Eventos:</h4>
+                                        <h4>Comics:</h4>
+                                        <ul>
+                                            {
+                                                this.state.comics.map((comic) => {
+                                                    return <li key={slugify(comic.name)}><Link to={`/comic/${comic.resourceURI.split("http://gateway.marvel.com/v1/public/comics/").pop()}`}>{comic.name}</Link></li>
+                                                })
+                                            }
+                                        </ul>
                                     </div>
                                     <div className="single-desc-item single-desc-creators">
                                         <h4>Creadores:</h4>
@@ -112,7 +118,7 @@ class SingleEvento extends React.Component {
                                             height={380}
                                             alt={this.state.event.title}
                                             src={this.state.comicImg}
-                                            thumbnail="true"
+                                            thumbnail={true}
                                         />
                                         <Figure.Caption>
                                             {this.state.event.title}

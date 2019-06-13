@@ -2,6 +2,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import { getCharacterInfo } from "../../service/services";
 import Spinner from 'react-bootstrap/Spinner';
+import Figure from 'react-bootstrap/Figure';
 import './card.scss';
 // eslint-disable-next-line
 import { BrowserRouter as Router, Link } from "react-router-dom";
@@ -32,27 +33,18 @@ import Col from 'react-bootstrap/Col';
       render(){
           return (
             <Col xs={12}  md={6}  xl={4} className="marvelCard">
-                <Card >
-                    <Link to={`/heroe/${this.state.heroe.id}`} className="marvelCard-linkImage">
-                        <Card.Img variant="top" alt={this.state.heroe.name} src={this.state.heroeImg} />
-                    </Link>
-                    <Card.Body>
-                        <Card.Title><h3>{this.state.heroe.name}</h3></Card.Title>
-                            
-                        {this.state.loading ? (
-                            <Spinner animation="grow" />
-                            ) : (
-                                <React.Fragment>
-                                    <Card.Text>
-                                        {this.state.heroe.description}
-                                    </Card.Text>
-                                    <Link to={`/heroe/${this.state.heroe.id}`}>Saber más</Link>
-                                </React.Fragment>
-                        )}
-                            
-                            
-                    </Card.Body>
-                </Card>
+                <Figure className="marvelCard-hover">
+                    <Figure.Image
+                        width={250}
+                        height={250}
+                        alt={this.state.heroe.name}
+                        src={this.state.heroeImg}
+                    />
+                    <Figure.Caption>
+                        <h2>{this.state.heroe.name}</h2>
+                    </Figure.Caption>
+                    <Link to={`/heroe/${this.state.heroe.id}`} className="marvelCard-linkImage"></Link>
+                </Figure>
             </Col>
           );
       }

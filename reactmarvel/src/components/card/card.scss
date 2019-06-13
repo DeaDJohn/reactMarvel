@@ -15,4 +15,84 @@
             }
         }
     }
+    figure {
+        &.marvelCard-hover {
+            background: #123851;
+            font-family: 'Raleway', Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+            margin: 10px;
+            min-width: 250px;
+            max-width: 310px;
+            max-height: 275px;
+            width: 100%;
+            background: #000000;
+            color: #ffffff;
+            text-align: center;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+            & * {
+                box-sizing: border-box;
+                transition: all 0.4s ease-in-out;
+            }
+            img {
+                max-width: 100%;
+                position: relative;
+                opacity: 0.4;
+            }
+            figcaption {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+            }
+            h2 {
+                position: absolute;
+                left: 40px;
+                right: 40px;
+                display: inline-block;
+                transform: skew(-10deg) rotate(-10deg) translate(0, -50%);
+                padding: 12px 5px;
+                margin: 0;
+                top: 50%;
+                text-transform: uppercase;
+                font-weight: 400;
+                background: #3268bd;
+                color: #ffffff;
+                font-size: 1.7em;
+            }
+            &:before {
+                height: 100%;
+                width: 122%;
+                top: 0;
+                left: 0;
+                content: '';
+                background: #ffffff;
+                position: absolute;
+                transition: all 0.3s ease-in-out;
+                transform: rotate(126deg) translateY(-50%);
+            }
+            a {
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                position: absolute;
+                z-index: 1;
+            }
+            &:hover img,
+            &.hover img {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+            &:hover h2,
+            &.hover h2 {
+                transform: skew(-10deg) rotate(-10deg) translate(-150%, -50%);
+            }
+             :hover:before,
+            .hover:before {
+                transform: rotate(110deg) translateY(-150%);
+            }
+        }
+    }
 }

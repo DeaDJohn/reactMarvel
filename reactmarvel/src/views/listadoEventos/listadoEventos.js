@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Figure from 'react-bootstrap/Figure';
 import { getEvents } from "../../service/services";
 import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
@@ -73,26 +74,42 @@ class ListadoEventos extends React.Component {
                     ) : (
                         this.state.events.map((event) => {
                             return ( 
-                                <Col xs={12}  md={6}  xl={4}
-                                    className = "marvelCard"
-                                    key={event.id}>
-                                    <Card>
-                                    <Card.Img variant = "top"
-                                        alt = { event.title }
-                                        src = { event.thumbnail.path + '/standard_fantastic.jpg' }
-                                    /> 
-                                    <Card.Body>
-                                        <Card.Title> < h3 > { event.title } </h3></Card.Title >
-                                        {/* <Card.Text dangerouslySetInnerHTML = {
-                                            { __html: event.description }
-                                        } >
-                                        </Card.Text> */}
+                                // <Col xs={12}  md={6}  xl={4}
+                                //     className = "marvelCard"
+                                //     key={event.id}>
+                                //     <Card>
+                                //     <Card.Img variant = "top"
+                                //         alt = { event.title }
+                                //         src = { event.thumbnail.path + '/standard_fantastic.jpg' }
+                                //     /> 
+                                //     <Card.Body>
+                                //         <Card.Title> < h3 > { event.title } </h3></Card.Title >
+                                //         {/* <Card.Text dangerouslySetInnerHTML = {
+                                //             { __html: event.description }
+                                //         } >
+                                //         </Card.Text> */}
 
-                                        <Link to = { `/event/${event.id}` }> Saber más </Link>
+                                //         <Link to = { `/event/${event.id}` }> Saber más </Link>
 
-                                    </Card.Body> 
-                                    </Card>
-                                </Col>
+                                //     </Card.Body> 
+                                //     </Card>
+                                    
+                                // </Col>
+                                <Col xs={12}  md={6}  xl={4} className="marvelCard">
+                                <Figure className="marvelCard-hover">
+                                    <Figure.Image
+                                        width={250}
+                                        height={250}
+                                        alt={event.title}
+                                        src={event.thumbnail.path + '/standard_fantastic.jpg'}
+                                        
+                                    />
+                                    <Figure.Caption>
+                                        <h2>{event.title}</h2>
+                                    </Figure.Caption>
+                                    <Link to={`/event/${event.id}`} className="marvelCard-linkImage"></Link>
+                                </Figure>
+                            </Col>
 
                             );
                         })
