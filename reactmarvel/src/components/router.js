@@ -4,11 +4,13 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import  Home  from "../views/home/home";
 import Listado from "../views/listado/listado";
+import ListadoSeries from "../views/listado/listadoSeries";
 import ListadoComics from "../views/listadoComics/listadoComics";
 import ListadoEventos from "../views/listadoEventos/listadoEventos";
 import Single from "../views/single/single";
 import SingleComic from "../views/single/singleComic";
 import SingleEvento from "../views/single/singleEvento";
+import SingleSerie from "../views/single/singleSerie";
 import Footer from "../components/footer/footer";
 // Each logical "route" has two components, one for
 // the sidebar and one for the main area. We want to
@@ -49,6 +51,16 @@ const routes = [
 	path: "/event/:id",
 	main: SingleEvento,
 	exact: true
+  },
+  {
+	path: "/series/:page",
+	main: ListadoSeries,
+	exact: true
+  },
+  {
+	path: "/serie/:id",
+	main: SingleSerie,
+	exact: true
   }
 ];
 
@@ -66,6 +78,7 @@ function menuHeroes () {
 						<Nav.Link href="/heroes/1">Heroes</Nav.Link>
 						<Nav.Link href="/comics/1">Comics</Nav.Link>
 						<Nav.Link href="/events/1">Eventos</Nav.Link>
+						<Nav.Link href="/series/1">Series</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>
 			</Navbar>

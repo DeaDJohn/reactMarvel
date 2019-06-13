@@ -113,10 +113,11 @@
         }
     }
     .pageHeader {
-        padding: 5vw 0;
+        padding: 7vw 0;
         margin-bottom: 3vw;
         background-size: cover;
         position: relative;
+        background-position: top center;
         &:before {
             content: '';
             display: block;
