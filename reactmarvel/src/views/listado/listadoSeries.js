@@ -10,7 +10,7 @@ import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
 import Header from '../../components/header';
 
-
+import slugify from '../../helpers/slugify';
 import Card from 'react-bootstrap/Card';
 import { PacmanLoader } from 'react-spinners';
 // eslint-disable-next-line
@@ -95,7 +95,7 @@ class ListadoSeries extends React.Component {
                                 //     </Card>
                                     
                                 // </Col>
-                                <Col xs={12}  md={6}  xl={4} className="marvelCard">
+                                <Col xs={12}  md={6}  xl={4} className="marvelCard" key={slugify(serie.title)}>
                                 <Figure className="marvelCard-hover">
                                     <Figure.Image
                                         width={250}

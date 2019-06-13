@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col';
 import Header from '../../components/header';
 // eslint-disable-next-line
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import { getSeriesInfo } from "../../service/services";
+import { getSeriesInfo, getSeriesByCharacters } from "../../service/services";
 import { PacmanLoader } from 'react-spinners';
 import slugify from '../../helpers/slugify';
 class SingleSerie extends React.Component {
@@ -38,10 +38,17 @@ class SingleSerie extends React.Component {
                 stories: serie.stories.items,
                 series: serie.series,
                 creators: serie.creators.items,
-                characters: serie.characters.items,
+                // characters: serie.characters.items,
                 loading: false
             });
-
+        });
+        getSeriesByCharacters(this.state.idSeries).then(response => {
+            const characters = response.data.results;
+            // console.log(characters);
+            this.setState({
+                characters: characters,
+                loading: false
+            });
         });
     }
 
@@ -70,13 +77,28 @@ class SingleSerie extends React.Component {
                                     </div>
                                     <div className="single-desc-item single-desc-charcters">
                                         <h4>Personajes:</h4>
-                                        <ul>
+                                        <Row>
                                             {
                                                 this.state.characters.map((character) => {
-                                                    return <li key={slugify(character.name)}><Link to={`/heroe/${character.resourceURI.split("http://gateway.marvel.com/v1/public/characters/").pop()}`}>{character.name}</Link></li>
+                                                    console.log(character);
+                                                    let image = character.thumbnail.path +'/standard_fantastic.'+character.thumbnail.extension;
+                                                    return <Col xs={12}  md={6} className="marvelCard" key={slugify(character.name)}>
+                                                                <Figure className="marvelCard-hover">
+                                                                    <Figure.Image
+                                                                        width={250}
+                                                                        height={250}
+                                                                        alt={character.name}
+                                                                        src={image}
+                                                                    />
+                                                                    <Figure.Caption>
+                                                                        <h2>{character.name}</h2>
+                                                                    </Figure.Caption>
+                                                                    <Link to={`/heroe/${character.id}`} className="marvelCard-linkImage"></Link>
+                                                                </Figure>
+                                                            </Col>
                                                 })
                                             }
-                                        </ul>
+                                        </Row>
                                     </div>
                                     <div className="single-desc-item single-desc-stories">
                                         <h4>Historias:</h4>

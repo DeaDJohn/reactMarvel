@@ -90,8 +90,8 @@ export const getComicInfo = (comicId = null) => {
 
 export const getComicsByCharacters = (heroeId = null) => {
 
-    const URI = '/v1/public/characters/';
-    const url = `${config.BASE_URL}${URI}${heroeId}/comics`;
+    const URI = '/v1/public/comics/';
+    const url = `${config.BASE_URL}${URI}${heroeId}/characters`;
     const timeStamp = moment().unix();
     const queryParams = {
         ts: timeStamp,
@@ -108,8 +108,8 @@ export const getComicsByCharacters = (heroeId = null) => {
 
 export const getSeriesByCharacters = (heroeId = null) => {
 
-    const URI = '/v1/public/characters/';
-    const url = `${config.BASE_URL}${URI}${heroeId}/series`;
+    const URI = '/v1/public/series/';
+    const url = `${config.BASE_URL}${URI}${heroeId}/characters`;
     const timeStamp = moment().unix();
     const queryParams = {
         ts: timeStamp,
@@ -126,8 +126,8 @@ export const getSeriesByCharacters = (heroeId = null) => {
 
 export const getStoriesByCharacters = (heroeId = null) => {
 
-    const URI = '/v1/public/characters/';
-    const url = `${config.BASE_URL}${URI}${heroeId}/stories`;
+    const URI = '/v1/public/stories/';
+    const url = `${config.BASE_URL}${URI}${heroeId}/characters`;
     const timeStamp = moment().unix();
     const queryParams = {
         ts: timeStamp,
@@ -143,8 +143,8 @@ export const getStoriesByCharacters = (heroeId = null) => {
 };
 export const getEventsByCharacters = (heroeId = null) => {
 
-    const URI = '/v1/public/characters/';
-    const url = `${config.BASE_URL}${URI}${heroeId}/events`;
+    const URI = '/v1/public/events/';
+    const url = `${config.BASE_URL}${URI}${heroeId}/characters`;
     const timeStamp = moment().unix();
     const queryParams = {
         ts: timeStamp,
