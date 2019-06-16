@@ -57,13 +57,13 @@ class Home extends React.Component {
                             </p>
                         </Container>
                     </Jumbotron>
-                <Container>
-                <Row className="justify-content-between">
-                    <CardMarvel heroe="1009610" ></CardMarvel>
-                    <CardMarvel heroe="1009220" ></CardMarvel>
-                    <CardMarvel heroe="1009368" ></CardMarvel>
-                </Row>
-            </Container>
+                <Container className="home-destacados">
+                    <Row className="justify-content-between">
+                        <CardMarvel heroe="1009610" ></CardMarvel>
+                        <CardMarvel heroe="1009220" ></CardMarvel>
+                        <CardMarvel heroe="1009368" ></CardMarvel>
+                    </Row>
+                </Container>
             </div>     
         );
     }

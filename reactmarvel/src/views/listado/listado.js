@@ -45,7 +45,7 @@ class Listado extends React.Component {
             loading: true,
         });
         getCharacters(page).then(response => {
-            console.log(page);
+            // console.log(page);
             const heroes = response.data.results;
             this.setState({
                 heroes: heroes,
@@ -80,7 +80,12 @@ class Listado extends React.Component {
                     </Row>
                     <Row>
                         <Col>
-                            <Pagination onChange={this.onChange} pageSize={21}  current={this.state.paginaActual} total={ parseInt(this.state.totalHeroe)} />
+                            <Pagination 
+                                onChange={this.onChange} 
+                                pageSize={21}  
+                                current={this.state.paginaActual} 
+                                total={ parseInt(this.state.totalHeroe)} 
+                                />
                         </Col>
                     </Row>
                 </Container>

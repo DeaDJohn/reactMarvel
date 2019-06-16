@@ -10,8 +10,6 @@ import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
 import Header from '../../components/header';
 
-
-import Card from 'react-bootstrap/Card';
 import { PacmanLoader } from 'react-spinners';
 // eslint-disable-next-line
 import { BrowserRouter as Router, Link } from "react-router-dom";

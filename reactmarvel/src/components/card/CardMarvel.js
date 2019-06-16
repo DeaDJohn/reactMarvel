@@ -1,7 +1,5 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
 import { getCharacterInfo } from "../../service/services";
-import Spinner from 'react-bootstrap/Spinner';
 import Figure from 'react-bootstrap/Figure';
 import './card.scss';
 // eslint-disable-next-line

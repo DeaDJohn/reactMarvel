@@ -168,7 +168,7 @@ class Single extends React.Component {
                                     height={380}
                                     alt={this.state.heroe.name}
                                     src={this.state.heroeImg}
-                                    thumbnail="true"
+                                    thumbnail={true}
                                 />
                                 <Figure.Caption>
                                     {this.state.heroe.name}
