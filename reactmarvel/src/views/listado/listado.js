@@ -40,6 +40,7 @@ class Listado extends React.Component {
 
     onChange = (page) => {
         // console.log(page);
+        this.props.history.push('/heroes/'+ page);
         this.setState({
             paginaActual: parseInt(page),
             loading: true,

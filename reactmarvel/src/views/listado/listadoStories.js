@@ -41,6 +41,7 @@ class ListadoStories extends React.Component {
     }
 
     onChange = (page) => {
+        this.props.history.push('/stories/'+ page);
         this.setState({
             paginaActual: parseInt(page),
             loading: true,
@@ -72,43 +73,21 @@ class ListadoStories extends React.Component {
                     ) : (
                         this.state.stories.map((story) => {
                             return ( 
-                                // <Col xs={12}  md={6}  xl={4}
-                                //     className = "marvelCard"
-                                //     key={story.id}>
-                                //     <Card>
-                                //     <Card.Img variant = "top"
-                                //         alt = { story.title }
-                                //         src = { story.thumbnail.path + '/standard_fantastic.jpg' }
-                                //     /> 
-                                //     <Card.Body>
-                                //         <Card.Title> < h3 > { story.title } </h3></Card.Title >
-                                //         {/* <Card.Text dangerouslySetInnerHTML = {
-                                //             { __html: story.description }
-                                //         } >
-                                //         </Card.Text> */}
-
-                                //         <Link to = { `/story/${story.id}` }> Saber más </Link>
-
-                                //     </Card.Body> 
-                                //     </Card>
-                                    
-                                // </Col>
                                 <Col xs={12}  md={6}  xl={4} className="marvelCard">
-                                <Figure className="marvelCard-hover">
-                                    <Figure.Image
-                                        width={250}
-                                        height={250}
-                                        alt={story.title}
-                                        src="https://upload.wikimedia.org/wikipedia/commons/0/04/MarvelLogo.svg"
-                                        
-                                    />
-                                    <Figure.Caption>
-                                        <h2>{story.title}</h2>
-                                    </Figure.Caption>
-                                    <Link to={`/story/${story.id}`} className="marvelCard-linkImage"></Link>
-                                </Figure>
-                            </Col>
-
+                                    <Figure className="marvelCard-hover">
+                                        <Figure.Image
+                                            width={250}
+                                            height={250}
+                                            alt={story.title}
+                                            src="https://upload.wikimedia.org/wikipedia/commons/0/04/MarvelLogo.svg"
+                                            
+                                        />
+                                        <Figure.Caption>
+                                            <h2>{story.title}</h2>
+                                        </Figure.Caption>
+                                        <Link to={`/story/${story.id}`} className="marvelCard-linkImage"></Link>
+                                    </Figure>
+                                </Col>
                             );
                         })
                     )

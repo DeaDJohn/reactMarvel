@@ -41,6 +41,7 @@ class ListadoComics extends React.Component {
     }
 
     onChange = (page) => {
+        this.props.history.push('/comics/'+ page);
         this.setState({
             paginaActual: parseInt(page),
             loading: true,

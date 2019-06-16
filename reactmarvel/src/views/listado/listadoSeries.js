@@ -42,6 +42,7 @@ class ListadoSeries extends React.Component {
     }
 
     onChange = (page) => {
+        this.props.history.push('/series/'+ page);
         this.setState({
             paginaActual: parseInt(page),
             loading: true,
@@ -73,43 +74,21 @@ class ListadoSeries extends React.Component {
                     ) : (
                         this.state.series.map((serie) => {
                             return ( 
-                                // <Col xs={12}  md={6}  xl={4}
-                                //     className = "marvelCard"
-                                //     key={serie.id}>
-                                //     <Card>
-                                //     <Card.Img variant = "top"
-                                //         alt = { serie.title }
-                                //         src = { serie.thumbnail.path + '/standard_fantastic.jpg' }
-                                //     /> 
-                                //     <Card.Body>
-                                //         <Card.Title> < h3 > { serie.title } </h3></Card.Title >
-                                //         {/* <Card.Text dangerouslySetInnerHTML = {
-                                //             { __html: serie.description }
-                                //         } >
-                                //         </Card.Text> */}
-
-                                //         <Link to = { `/serie/${serie.id}` }> Saber más </Link>
-
-                                //     </Card.Body> 
-                                //     </Card>
-                                    
-                                // </Col>
                                 <Col xs={12}  md={6}  xl={4} className="marvelCard" key={slugify(serie.title)}>
-                                <Figure className="marvelCard-hover">
-                                    <Figure.Image
-                                        width={250}
-                                        height={250}
-                                        alt={serie.title}
-                                        src={serie.thumbnail.path + '/standard_fantastic.jpg'}
-                                        
-                                    />
-                                    <Figure.Caption>
-                                        <h2>{serie.title}</h2>
-                                    </Figure.Caption>
-                                    <Link to={`/serie/${serie.id}`} className="marvelCard-linkImage"></Link>
-                                </Figure>
-                            </Col>
-
+                                    <Figure className="marvelCard-hover">
+                                        <Figure.Image
+                                            width={250}
+                                            height={250}
+                                            alt={serie.title}
+                                            src={serie.thumbnail.path + '/standard_fantastic.jpg'}
+                                            
+                                        />
+                                        <Figure.Caption>
+                                            <h2>{serie.title}</h2>
+                                        </Figure.Caption>
+                                        <Link to={`/serie/${serie.id}`} className="marvelCard-linkImage"></Link>
+                                    </Figure>
+                                </Col>
                             );
                         })
                     )
