@@ -7,14 +7,14 @@
     "bootstrap": "^4.3.1",
     "crypto-js": "^4.2.0",
     "moment": "^2.24.0",
-    "node-sass": "^7.0.0",
+    "node-sass": "^9.0.0",
     "rc-pagination": "^1.20.1",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.6",
     "react-icons": "^3.7.0",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.0.1",
+    "react-scripts": "5.0.1",
     "react-spinners": "^0.5.4"
   },
   "scripts": {
